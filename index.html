@@ -14,150 +14,102 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden;background:#1a6b4a}
 body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif}
-#app{
-  display:flex;flex-direction:column;
-  height:100vh;height:-webkit-fill-available;
-  max-width:480px;margin:0 auto;
-  background:#f5f5f0;
-}
-/* Header */
-.hdr{
-  background:#1a6b4a;
-  padding:env(safe-area-inset-top,0px) 16px 10px;
-  padding-top:calc(env(safe-area-inset-top,0px) + 12px);
-  color:#fff;flex-shrink:0;
-}
-.hdr h1{font-size:17px;font-weight:600;letter-spacing:0.2px}
-.hdr p{font-size:11px;opacity:.75;margin-top:2px}
-/* Tabs */
-.tabs{
-  display:flex;background:#fff;
-  border-bottom:1px solid #e5e5e5;
-  flex-shrink:0;
-}
-.tab{
-  flex:1;padding:10px 4px 8px;font-size:11px;text-align:center;
-  cursor:pointer;color:#888;border-bottom:2px solid transparent;
-  transition:color .2s;
-}
+#app{display:flex;flex-direction:column;height:100vh;height:-webkit-fill-available;max-width:480px;margin:0 auto;background:#f5f5f0}
+.hdr{background:linear-gradient(135deg,#1a6b4a,#27ae60);padding:env(safe-area-inset-top,0px) 16px 10px;padding-top:calc(env(safe-area-inset-top,0px) + 12px);color:#fff;flex-shrink:0}
+.hdr h1{font-size:17px;font-weight:700}
+.hdr p{font-size:11px;opacity:.8;margin-top:2px}
+.tabs{display:flex;background:#fff;border-bottom:1px solid #eee;flex-shrink:0}
+.tab{flex:1;padding:10px 4px 8px;font-size:11px;text-align:center;cursor:pointer;color:#999;border-bottom:2px solid transparent}
 .tab svg{display:block;margin:0 auto 3px;width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
-.tab.on{color:#1a6b4a;border-bottom-color:#1a6b4a;font-weight:500}
-/* Pages */
+.tab.on{color:#1a6b4a;border-bottom-color:#1a6b4a;font-weight:600}
 .pages{flex:1;overflow:hidden;position:relative}
-.pg{
-  position:absolute;inset:0;overflow-y:auto;
-  padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px));
-  display:none;-webkit-overflow-scrolling:touch;
-}
+.pg{position:absolute;inset:0;overflow-y:auto;padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px));display:none;-webkit-overflow-scrolling:touch}
 .pg.on{display:block}
-/* Cards */
-.card{background:#fff;border-radius:14px;padding:20px 16px;text-align:center;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-.tw{font-size:26px;color:#1a6b4a;font-weight:600;margin-bottom:5px;line-height:1.3}
-.ph{font-size:13px;color:#888;margin-bottom:8px;line-height:1.5}
-.mn{font-size:20px;color:#222;margin-bottom:10px;font-weight:500}
-.tag{display:inline-block;font-size:11px;background:#e8f5ef;color:#1a6b4a;padding:3px 10px;border-radius:20px}
-/* Stat row */
-.srow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
-.st{background:#fff;border-radius:12px;padding:10px 6px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.sn{font-size:22px;font-weight:600;color:#1a6b4a}
-.sl{font-size:10px;color:#888;margin-top:2px}
-/* Buttons */
-.br{display:flex;gap:8px;margin-bottom:8px}
-.btn{
-  flex:1;padding:11px 8px;border-radius:12px;border:none;
-  cursor:pointer;font-size:13px;font-weight:500;
-  display:flex;align-items:center;justify-content:center;gap:6px;
-  background:#f0f0ec;color:#333;
-  -webkit-appearance:none;transition:opacity .15s;
-}
-.btn:active{opacity:.7}
-.btn.g{background:#1a6b4a;color:#fff}
-.btn.b{background:#2471a3;color:#fff}
-/* Progress bar */
-.pbar{height:5px;background:#e5e5e5;border-radius:3px;margin-bottom:12px;overflow:hidden}
-.pfill{height:100%;background:#1a6b4a;border-radius:3px;transition:width .4s}
-/* Mode toggle */
-.mt{display:flex;background:#e8e8e4;border-radius:10px;padding:3px;margin-bottom:12px}
-.mb{flex:1;padding:7px;text-align:center;font-size:12px;border-radius:8px;cursor:pointer;color:#666;font-weight:500}
-.mb.on{background:#fff;color:#1a6b4a;box-shadow:0 1px 3px rgba(0,0,0,.1)}
-/* Sentence card */
-.sc{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-.stw{font-size:20px;color:#1a6b4a;font-weight:600;margin-bottom:6px;line-height:1.5}
-.sph{font-size:12px;color:#888;margin-bottom:6px;line-height:1.5}
-.scn{font-size:15px;color:#222;margin-bottom:6px;font-weight:500}
-/* Word list */
-.wl{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-.wi{display:flex;align-items:center;padding:11px 12px;border-bottom:1px solid #f0f0ec;cursor:pointer;gap:10px}
-.wi:last-child{border-bottom:none}
-.wi:active{background:#f5f5f0}
-.wn{font-size:10px;color:#bbb;min-width:24px}
-.wt{font-size:15px;font-weight:600;color:#222}
-.wp{font-size:11px;color:#888;margin-top:1px}
-.wc{font-size:12px;color:#555}
-.wpl{color:#1a6b4a;font-size:22px;flex-shrink:0}
-/* Filter chips */
-.frow{display:flex;gap:6px;margin-bottom:10px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
-.frow::-webkit-scrollbar{display:none}
-.fc{white-space:nowrap;padding:5px 12px;border-radius:20px;font-size:12px;border:1.5px solid #ddd;cursor:pointer;background:#fff;color:#555;font-weight:500}
-.fc.on{background:#1a6b4a;color:#fff;border-color:#1a6b4a}
-/* Quiz */
-.qq{font-size:22px;font-weight:600;text-align:center;margin:14px 0 4px;color:#222;line-height:1.4}
-.qs{font-size:12px;color:#888;text-align:center;margin-bottom:14px}
-.qo{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.qb{
-  padding:13px 8px;border-radius:12px;border:1.5px solid #e0e0e0;
-  cursor:pointer;font-size:13px;text-align:center;background:#fff;color:#333;
-  font-weight:500;-webkit-appearance:none;transition:all .15s;
-}
-.qb:active{opacity:.7}
-.qb.ok{background:#e8f5ef;border-color:#1a6b4a;color:#1a6b4a}
-.qb.no{background:#fdecea;border-color:#c0392b;color:#c0392b}
-/* Empty quiz state */
-.qempty{text-align:center;padding:40px 20px;color:#888}
-.qempty .icon{font-size:48px;margin-bottom:12px}
-.qempty p{font-size:15px;color:#333;margin-bottom:8px;font-weight:500}
-.qempty span{font-size:13px;line-height:1.6}
-/* Hint */
-.hint{font-size:11px;color:#888;text-align:center;padding:8px 0}
-/* Badge */
-.badge{font-size:11px;background:#e8e8e4;color:#666;padding:3px 9px;border-radius:10px;margin-bottom:8px;display:inline-block}
-/* Speaking anim */
+.scene-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.scene-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;position:relative}
+.scene-card:active{transform:scale(.97)}
+.scene-thumb{height:100px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.scene-info{padding:8px 10px 10px}
+.scene-title{font-size:13px;font-weight:600;color:#222}
+.scene-sub{font-size:11px;color:#888;margin-top:2px}
+.scene-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.45);color:#fff;font-size:10px;padding:2px 6px;border-radius:10px}
+.scene-done{position:absolute;top:8px;left:8px;background:#1a6b4a;color:#fff;font-size:10px;padding:2px 6px;border-radius:10px}
+.scene-detail{display:none}
+.scene-detail.on{display:block}
+.back-btn{display:flex;align-items:center;gap:6px;color:#1a6b4a;font-size:13px;font-weight:600;margin-bottom:12px;cursor:pointer;padding:4px 0}
+.scene-illustration{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.1);margin-bottom:12px;overflow:hidden}
+.scene-illustration svg{width:100%;height:auto;display:block}
+.scene-words{background:#fff;border-radius:14px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.scene-words h3{font-size:13px;font-weight:600;color:#666;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+.word-row{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5;cursor:pointer;gap:10px}
+.word-row:last-child{border-bottom:none}
+.word-row:active{background:#f0faf5}
+.wr-num{font-size:11px;color:#ccc;min-width:20px}
+.wr-thai{font-size:15px;font-weight:600;color:#1a6b4a;flex:1}
+.wr-ph{font-size:11px;color:#aaa;flex:1}
+.wr-cn{font-size:13px;color:#555;flex:1}
+.wr-play{color:#1a6b4a;flex-shrink:0}
+.learned-dot{width:7px;height:7px;border-radius:50%;background:#1a6b4a;display:inline-block;margin-left:5px;vertical-align:middle}
+.flashcard{background:#fff;border-radius:18px;padding:28px 20px;text-align:center;margin-bottom:14px;box-shadow:0 3px 16px rgba(0,0,0,.1);min-height:200px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.fc-scene{font-size:40px;margin-bottom:8px}
+.fc-thai{font-size:28px;font-weight:700;color:#1a6b4a;margin-bottom:4px}
+.fc-ph{font-size:13px;color:#aaa;margin-bottom:8px;letter-spacing:.5px}
+.fc-cn{font-size:20px;color:#333;font-weight:500;margin-bottom:10px}
+.fc-tag{display:inline-block;font-size:11px;background:#e8f5ef;color:#1a6b4a;padding:3px 10px;border-radius:20px}
 .anim{display:flex;align-items:center;justify-content:center;gap:3px;height:22px;margin-top:8px}
 .ab{width:4px;background:#1a6b4a;border-radius:2px;animation:pp .8s ease-in-out infinite}
 .ab:nth-child(2){animation-delay:.15s}
 .ab:nth-child(3){animation-delay:.3s}
 @keyframes pp{0%,100%{height:5px}50%{height:18px}}
 .hid{display:none!important}
-/* Select */
-select{
-  width:100%;padding:10px 12px;border-radius:12px;
-  border:1.5px solid #e0e0e0;font-size:13px;
-  background:#fff;color:#333;margin-bottom:10px;
-  -webkit-appearance:none;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center;
-  padding-right:32px;
-}
-/* Learned dot */
-.ldot{width:7px;height:7px;border-radius:50%;background:#1a6b4a;display:inline-block;margin-left:5px;vertical-align:middle;flex-shrink:0}
-/* Section label */
-.sec-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;padding-left:2px}
+.srow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.st{background:#fff;border-radius:12px;padding:10px 6px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.sn{font-size:22px;font-weight:700;color:#1a6b4a}
+.sl{font-size:10px;color:#888;margin-top:2px}
+.pbar{height:5px;background:#eee;border-radius:3px;margin-bottom:12px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,#1a6b4a,#27ae60);border-radius:3px;transition:width .4s}
+.br{display:flex;gap:8px;margin-bottom:8px}
+.btn{flex:1;padding:11px 8px;border-radius:12px;border:none;cursor:pointer;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;background:#f0eeea;color:#444;-webkit-appearance:none;transition:opacity .15s}
+.btn:active{opacity:.7}
+.btn.g{background:#1a6b4a;color:#fff}
+.btn.b{background:#2471a3;color:#fff}
+.mt{display:flex;background:#e8e6e2;border-radius:10px;padding:3px;margin-bottom:12px}
+.mb{flex:1;padding:7px;text-align:center;font-size:12px;border-radius:8px;cursor:pointer;color:#666;font-weight:500}
+.mb.on{background:#fff;color:#1a6b4a;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.qq{font-size:22px;font-weight:700;text-align:center;margin:12px 0 4px;color:#222;line-height:1.4}
+.qs{font-size:12px;color:#888;text-align:center;margin-bottom:12px}
+.qo{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.qb{padding:13px 8px;border-radius:12px;border:1.5px solid #e8e8e8;cursor:pointer;font-size:13px;text-align:center;background:#fff;color:#333;font-weight:500;-webkit-appearance:none}
+.qb:active{opacity:.7}
+.qb.ok{background:#e8f5ef;border-color:#1a6b4a;color:#1a6b4a}
+.qb.no{background:#fdecea;border-color:#c0392b;color:#c0392b}
+.qempty{text-align:center;padding:40px 20px;color:#aaa}
+.qempty .icon{font-size:52px;margin-bottom:12px}
+.qempty p{font-size:15px;color:#444;margin-bottom:8px;font-weight:600}
+.qempty span{font-size:13px;line-height:1.7;color:#888}
+.hint{font-size:11px;color:#aaa;text-align:center;padding:8px 0}
+.badge{font-size:11px;background:#eee;color:#888;padding:3px 9px;border-radius:10px;margin-bottom:8px;display:inline-block}
+.unlock-banner{background:linear-gradient(135deg,#f39c12,#e67e22);border-radius:14px;padding:14px 16px;margin-bottom:12px;color:#fff;display:flex;align-items:center;gap:12px}
+.unlock-banner .icon{font-size:32px;flex-shrink:0}
+.unlock-banner h3{font-size:14px;font-weight:700;margin-bottom:3px}
+.unlock-banner p{font-size:12px;opacity:.9}
+select{width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid #e0e0e0;font-size:13px;background:#fff;color:#333;margin-bottom:10px;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.wl{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.word-pin{cursor:pointer}
 </style>
 </head>
 <body>
 <div id="app">
-
 <div class="hdr">
   <h1>🇹🇭 ภาษาไทย &nbsp;泰语学习</h1>
-  <p>AAA音标系统 · 1000词 · 泰文TTS朗读</p>
+  <p>场景图片法 · AAA音标 · 先学150核心词 · 进度自动保存</p>
 </div>
-
 <div class="tabs">
-  <div class="tab on" onclick="go('learn')" id="t-learn">
-    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>学习
+  <div class="tab on" onclick="go('scene')" id="t-scene">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>场景
   </div>
-  <div class="tab" onclick="go('sents')" id="t-sents">
-    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>句子
+  <div class="tab" onclick="go('cards')" id="t-cards">
+    <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>单词卡
   </div>
   <div class="tab" onclick="go('words')" id="t-words">
     <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>词库
@@ -166,427 +118,840 @@ select{
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>测试
   </div>
 </div>
-
 <div class="pages">
 
-<!-- 学习 -->
-<div class="pg on" id="p-learn">
+<!-- 场景页 -->
+<div class="pg on" id="p-scene">
+  <div id="scene-list-view">
+    <div class="srow">
+      <div class="st"><div class="sn" id="sl">0</div><div class="sl">已学词</div></div>
+      <div class="st"><div class="sn" id="ss">0/12</div><div class="sl">场景</div></div>
+      <div class="st" onclick="resetProgress()" style="cursor:pointer">
+        <div class="sn" style="font-size:20px">🔄</div>
+        <div class="sl">重置进度</div>
+      </div>
+    </div>
+    <div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div>
+    <div id="unlock-area"></div>
+    <div class="scene-grid" id="scene-grid"></div>
+  </div>
+  <div id="scene-detail-view" class="scene-detail">
+    <div class="back-btn" onclick="backToScenes()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      返回场景列表
+    </div>
+    <div id="scene-content"></div>
+  </div>
+</div>
+
+<!-- 单词卡页 -->
+<div class="pg" id="p-cards">
   <div class="srow">
-    <div class="st"><div class="sn" id="sl">0</div><div class="sl">已学词</div></div>
-    <div class="st"><div class="sn" id="ss">0</div><div class="sl">连击</div></div>
-    <div class="st"><div class="sn">1000</div><div class="sl">总词数</div></div>
+    <div class="st"><div class="sn" id="cl">0</div><div class="sl">已学</div></div>
+    <div class="st"><div class="sn" id="cstreak">0</div><div class="sl">连击</div></div>
+    <div class="st"><div class="sn" id="ctotal">150</div><div class="sl">总词数</div></div>
   </div>
-  <div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div>
-  <div class="mt">
-    <div class="mb on" onclick="setM('w')" id="mw">单词模式</div>
-    <div class="mb" onclick="setM('s')" id="ms">句子模式</div>
+  <div class="pbar"><div class="pfill" id="cpf" style="width:0%"></div></div>
+  <div class="flashcard">
+    <div class="fc-scene" id="fc-scene">🙏</div>
+    <div class="fc-thai" id="fc-thai">สวัสดี</div>
+    <div class="fc-ph" id="fc-ph">sa-wàt-dii</div>
+    <div class="fc-cn" id="fc-cn">你好</div>
+    <div class="fc-tag" id="fc-tag">问候</div>
+    <div class="anim hid" id="fc-anim"><div class="ab"></div><div class="ab"></div><div class="ab"></div></div>
   </div>
-
-  <div id="vw">
-    <div class="card">
-      <div class="tw" id="ctw">สวัสดี</div>
-      <div class="ph" id="cph">sa-wàt-dii</div>
-      <div class="mn" id="cmn">你好</div>
-      <div class="tag" id="ctg">问候</div>
-      <div class="anim hid" id="an1"><div class="ab"></div><div class="ab"></div><div class="ab"></div></div>
-    </div>
-    <div class="br">
-      <button class="btn b" onclick="spW()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-        听发音
-      </button>
-      <button class="btn g" onclick="nW()">
-        下一个
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </button>
-    </div>
-    <div class="br">
-      <button class="btn" onclick="pW()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-        上一个
-      </button>
-      <button class="btn" onclick="rW()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
-        随机
-      </button>
-    </div>
+  <div class="br">
+    <button class="btn b" onclick="spCard()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>听发音
+    </button>
+    <button class="btn g" onclick="nextCard()">下一个 →</button>
   </div>
-
-  <div id="vs" class="hid">
-    <div class="sc">
-      <div class="stw" id="stw">—</div>
-      <div class="sph" id="sph">—</div>
-      <div class="scn" id="scn">—</div>
-      <div class="tag" id="ssc" style="font-size:10px">—</div>
-      <div class="anim hid" id="an2"><div class="ab"></div><div class="ab"></div><div class="ab"></div></div>
-    </div>
-    <div class="br">
-      <button class="btn b" onclick="spS()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-        听句子
-      </button>
-      <button class="btn g" onclick="nS()">下一句 →</button>
-    </div>
-    <div class="br">
-      <button class="btn" onclick="pS()">← 上一句</button>
-      <button class="btn" onclick="rS()">随机</button>
-    </div>
+  <div class="br">
+    <button class="btn" onclick="prevCard()">← 上一个</button>
+    <button class="btn" onclick="randCard()">🔀 随机</button>
   </div>
-  <div class="hint" id="th">点击"听发音"朗读泰语原文</div>
+  <div class="hint" id="card-hint">每翻一张卡片即记为已学</div>
 </div>
 
-<!-- 句子 -->
-<div class="pg" id="p-sents">
-  <select id="sf" onchange="filS()">
-    <option value="">全部场景（150句）</option>
-    <option value="问候">问候打招呼</option>
-    <option value="餐厅">餐厅点餐</option>
-    <option value="购物">购物市场</option>
-    <option value="交通">交通出行</option>
-    <option value="时间">时间日期</option>
-    <option value="家庭">家庭关系</option>
-    <option value="健康">身体健康</option>
-    <option value="情感">情感表达</option>
-    <option value="工作学习">工作学习</option>
-    <option value="方位地点">方位地点</option>
-    <option value="文化">泰国文化</option>
-    <option value="娱乐">娱乐休闲</option>
-  </select>
-  <div class="badge" id="sc2">150句</div>
-  <div class="wl" id="sl2"></div>
-</div>
-
-<!-- 词库 -->
+<!-- 词库页 -->
 <div class="pg" id="p-words">
-  <div class="frow" id="frow"></div>
-  <div class="badge" id="wlb">1000个词</div>
+  <select id="wcat" onchange="renderWordList()">
+    <option value="">全部词汇</option>
+  </select>
+  <div class="badge" id="wbadge">150个词</div>
   <div class="wl" id="wl"></div>
 </div>
 
-<!-- 测试 -->
+<!-- 测试页 -->
 <div class="pg" id="p-quiz">
   <div class="mt">
-    <div class="mb on" onclick="setQ('p2c')" id="qp">拼音 → 中文</div>
-    <div class="mb" onclick="setQ('c2p')" id="qc">中文 → 拼音</div>
+    <div class="mb on" onclick="setQ('t2c')" id="qt">拼音→中文</div>
+    <div class="mb" onclick="setQ('c2t')" id="qc">中文→拼音</div>
   </div>
   <div class="srow">
     <div class="st"><div class="sn" id="qok">0</div><div class="sl">答对</div></div>
     <div class="st"><div class="sn" id="qno">0</div><div class="sl">答错</div></div>
-    <div class="st"><div class="sn" id="qlrn" style="color:#888">0</div><div class="sl">可测词</div></div>
+    <div class="st"><div class="sn" id="qlrn" style="color:#aaa">0</div><div class="sl">可测词</div></div>
   </div>
   <div id="quiz-body">
     <div class="qq" id="qq">?</div>
-    <div class="qs" id="qs">先去学习模式翻几张卡片</div>
+    <div class="qs" id="qs"></div>
     <div class="qo" id="qo"></div>
     <div class="br">
-      <button class="btn b" onclick="spQ()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-        听发音
+      <button class="btn b" onclick="spQuiz()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>听发音
       </button>
       <button class="btn" onclick="refreshQuiz()">换一题</button>
     </div>
   </div>
   <div id="quiz-empty" class="qempty hid">
-    <div class="icon">📖</div>
+    <div class="icon">📚</div>
     <p>还没有已学词汇</p>
-    <span>先去「学习」模式翻几张单词卡，<br>回来就可以测试啦！</span>
+    <span>先去「场景」逛一逛，<br>词汇会自动记录！</span>
   </div>
-  <div class="hint" id="qh">只测试已学过的词</div>
+  <div class="hint" id="qh">只测试你已学过的词</div>
 </div>
 
-</div><!-- /pages -->
-</div><!-- /app -->
-
+</div>
+</div>
 <script>
-// ── 词库 [泰文, 拼音, 中文, 分类] ──
-const W=[
-["สวัสดี","sa-wàt-dii","你好","问候"],["ขอบคุณ","khɔ̂ɔp-khun","谢谢","问候"],["ไม่เป็นไร","mâi-pen-rai","没关系","问候"],["ใช่","châi","是的","问候"],["ไม่ใช่","mâi-châi","不是","问候"],["ครับ","khráp","是(男)","问候"],["ค่ะ","khâ","是(女)","问候"],["ลาก่อน","laa-kɔ̀ɔn","再见","问候"],["ขอโทษ","khɔ̌ɔ-thôot","对不起","问候"],["สบายดีไหม","sa-baai-dii-mǎi","你好吗","问候"],
-["หนึ่ง","nɯ̀ŋ","一","数字"],["สอง","sɔ̌ɔŋ","二","数字"],["สาม","sǎam","三","数字"],["สี่","sìi","四","数字"],["ห้า","hâa","五","数字"],["หก","hòk","六","数字"],["เจ็ด","cèt","七","数字"],["แปด","pɛ̀ɛt","八","数字"],["เก้า","kâo","九","数字"],["สิบ","sìp","十","数字"],["ยี่สิบ","yîi-sìp","二十","数字"],["สามสิบ","sǎam-sìp","三十","数字"],["สี่สิบ","sìi-sìp","四十","数字"],["ห้าสิบ","hâa-sìp","五十","数字"],["ร้อย","rɔ́ɔi","一百","数字"],["พัน","phan","一千","数字"],["หมื่น","mɯ̀ɯn","一万","数字"],["แสน","sǎɛn","十万","数字"],["ล้าน","láan","百万","数字"],["ศูนย์","sǔun","零","数字"],
-["วันนี้","wan-níi","今天","时间"],["พรุ่งนี้","phrûŋ-níi","明天","时间"],["เมื่อวาน","mɯ̂a-waan","昨天","时间"],["ตอนนี้","tɔɔn-níi","现在","时间"],["เช้า","cháo","早上","时间"],["กลางวัน","klaaŋ-wan","中午","时间"],["เย็น","yen","傍晚","时间"],["คืน","khɯɯn","夜晚","时间"],["สัปดาห์","sàp-daa","星期","时间"],["เดือน","dɯan","月份","时间"],["ปี","pii","年","时间"],["ชั่วโมง","chûa-mooŋ","小时","时间"],["นาที","naa-thii","分钟","时间"],["เวลา","wee-laa","时间","时间"],["วันจันทร์","wan-can","星期一","时间"],["วันอังคาร","wan-aŋ-khaan","星期二","时间"],["วันพุธ","wan-phút","星期三","时间"],["วันพฤหัส","wan-phrɯ́-hàt","星期四","时间"],["วันศุกร์","wan-sùk","星期五","时间"],["วันเสาร์","wan-sǎo","星期六","时间"],["วันอาทิตย์","wan-aa-thít","星期日","时间"],
-["แดง","dɛɛŋ","红色","颜色"],["น้ำเงิน","nám-ŋəən","蓝色","颜色"],["เหลือง","lɯ̌aŋ","黄色","颜色"],["เขียว","khǐaw","绿色","颜色"],["ขาว","khǎao","白色","颜色"],["ดำ","dam","黑色","颜色"],["ชมพู","chom-phuu","粉色","颜色"],["ส้ม","sôm","橙色","颜色"],["ม่วง","mûaŋ","紫色","颜色"],["น้ำตาล","nám-taan","棕色","颜色"],["เทา","thao","灰色","颜色"],
-["ข้าว","khâo","米饭","食物"],["ก๋วยเตี๋ยว","kǔai-tǐaw","米粉","食物"],["ผัดไทย","phàt-thai","炒泰面","食物"],["ต้มยำ","tôm-yam","冬阴功","食物"],["ส้มตำ","sôm-tam","青木瓜沙拉","食物"],["แกงเขียวหวาน","kɛɛŋ-khǐaw-wǎan","青咖喱","食物"],["แกงแดง","kɛɛŋ-dɛɛŋ","红咖喱","食物"],["ข้าวผัด","khâo-phàt","炒饭","食物"],["ลาบ","lâap","辣肉沫沙拉","食物"],["ไก่","kài","鸡","食物"],["หมู","mǔu","猪","食物"],["ปลา","plaa","鱼","食物"],["กุ้ง","kûŋ","虾","食物"],["เนื้อ","nɯ́a","牛肉","食物"],["ปู","puu","螃蟹","食物"],["ผัก","phàk","蔬菜","食物"],["ผลไม้","phǒn-la-máai","水果","食物"],["มะม่วง","ma-mûaŋ","芒果","食物"],["กล้วย","klûai","香蕉","食物"],["มะละกอ","ma-la-kɔɔ","木瓜","食物"],["ทุเรียน","thu-rian","榴莲","食物"],["มังคุด","maŋ-khút","山竹","食物"],["ลำไย","lam-yai","龙眼","食物"],["ลิ้นจี่","lín-cîi","荔枝","食物"],["น้ำ","nám","水","食物"],["น้ำแข็ง","nám-khɛ̌ŋ","冰","食物"],["ชา","chaa","茶","食物"],["กาแฟ","kaa-fɛɛ","咖啡","食物"],["เบียร์","bia","啤酒","食物"],["น้ำผลไม้","nám-phǒn-la-máai","果汁","食物"],["นม","nom","牛奶","食物"],["เกลือ","klɯa","盐","食物"],["น้ำตาล","nám-taan","糖","食物"],["พริก","phrík","辣椒","食物"],["กระเทียม","kra-thiam","大蒜","食物"],["ขิง","khǐŋ","姜","食物"],["ผักชี","phàk-chii","香菜","食物"],
-["หมา","mǎa","狗","动物"],["แมว","mɛɛw","猫","动物"],["ช้าง","cháaŋ","大象","动物"],["เสือ","sɯ̌a","老虎","动物"],["ลิง","liŋ","猴子","动物"],["นก","nók","鸟","动物"],["งู","ŋuu","蛇","动物"],["จระเข้","cɔɔ-ra-khêe","鳄鱼","动物"],["กระต่าย","kra-tàai","兔子","动物"],["หมี","mǐi","熊","动物"],["วัว","wua","牛","动物"],["กบ","kòp","青蛙","动物"],["ผีเสื้อ","phǐi-sɯ́a","蝴蝶","动物"],["ยุง","yuŋ","蚊子","动物"],["มด","mót","蚂蚁","动物"],["ปลาหมึก","plaa-mɯ̀k","鱿鱼","动物"],
-["พ่อ","phɔ̂ɔ","父亲","家庭"],["แม่","mɛ̂ɛ","母亲","家庭"],["พี่ชาย","phîi-chaai","哥哥","家庭"],["พี่สาว","phîi-sǎao","姐姐","家庭"],["น้องชาย","nɔ́ɔŋ-chaai","弟弟","家庭"],["น้องสาว","nɔ́ɔŋ-sǎao","妹妹","家庭"],["ลูกชาย","lûuk-chaai","儿子","家庭"],["ลูกสาว","lûuk-sǎao","女儿","家庭"],["สามี","sǎa-mii","丈夫","家庭"],["ภรรยา","phan-ra-yaa","妻子","家庭"],["ปู่","pùu","爷爷","家庭"],["ย่า","yâa","奶奶","家庭"],["ตา","taa","外公","家庭"],["ยาย","yaai","外婆","家庭"],["ลุง","luŋ","叔叔","家庭"],["ป้า","pâa","阿姨","家庭"],["ครอบครัว","khrɔ̂ɔp-khrua","家庭","家庭"],
-["หัว","hǔa","头","身体"],["ผม","phǒm","头发","身体"],["หน้า","nâa","脸","身体"],["ตา","taa","眼睛","身体"],["หู","hǔu","耳朵","身体"],["จมูก","ca-mùuk","鼻子","身体"],["ปาก","pàak","嘴","身体"],["ฟัน","fan","牙齿","身体"],["คอ","khɔɔ","脖子","身体"],["ไหล่","lài","肩膀","身体"],["แขน","khɛ̌ɛn","手臂","身体"],["มือ","mɯɯ","手","身体"],["นิ้ว","níw","手指","身体"],["หน้าอก","nâa-òk","胸","身体"],["ท้อง","thɔ́ɔŋ","肚子","身体"],["หลัง","lǎŋ","背","身体"],["ขา","khǎa","腿","身体"],["เข่า","khào","膝盖","身体"],["เท้า","tháo","脚","身体"],["หัวใจ","hǔa-cai","心脏","身体"],["ปอด","pɔ̀ɔt","肺","身体"],["เลือด","lɯat","血","身体"],
-["ไป","pai","去","动词"],["มา","maa","来","动词"],["กิน","kin","吃","动词"],["ดื่ม","dɯ̀ɯm","喝","动词"],["นอน","nɔɔn","睡","动词"],["นั่ง","nâŋ","坐","动词"],["ยืน","yɯɯn","站","动词"],["เดิน","dəən","走路","动词"],["วิ่ง","wîŋ","跑","动词"],["ซื้อ","sɯ́ɯ","买","动词"],["ขาย","khǎai","卖","动词"],["ดู","duu","看","动词"],["ฟัง","faŋ","听","动词"],["พูด","phûut","说","动词"],["อ่าน","àan","读","动词"],["เขียน","khǐan","写","动词"],["รู้","rúu","知道","动词"],["เข้าใจ","khâo-cai","明白","动词"],["ชอบ","chɔ̂ɔp","喜欢","动词"],["รัก","rák","爱","动词"],["อยาก","yàak","想要","动词"],["ต้องการ","tɔ̂ŋ-kaan","需要","动词"],["ได้","dâi","得到/能","动词"],["ทำ","tham","做","动词"],["เปิด","pəət","开","动词"],["ปิด","pìt","关","动词"],["เดินทาง","dəən-thaaŋ","旅行","动词"],["ทำงาน","tham-ŋaan","工作","动词"],["เรียน","rian","学习","动词"],["สอน","sɔ̌ɔn","教","动词"],["ช่วย","chûai","帮助","动词"],["คิด","khít","思考","动词"],["จำ","cam","记住","动词"],["ลืม","lɯɯm","忘记","动词"],["ถาม","thǎam","问","动词"],["ตอบ","tɔ̀ɔp","回答","动词"],["บอก","bɔ̀ɔk","告诉","动词"],["เห็น","hěn","看见","动词"],["รู้สึก","rúu-sɯ̀k","感觉","动词"],["หยุด","yùt","停止","动词"],["เริ่ม","rəəm","开始","动词"],["เสร็จ","sèt","完成","动词"],["ส่ง","sòŋ","发送","动词"],["รับ","ráp","接收","动词"],["จ่าย","càai","付钱","动词"],["โทร","thoo","打电话","动词"],["เอา","ao","拿","动词"],["หา","hǎa","寻找","动词"],["รอ","rɔɔ","等待","动词"],["อธิบาย","a-thi-baai","解释","动词"],["เล่น","lên","玩","动词"],["ใช้","cháai","使用","动词"],["เปลี่ยน","plìan","改变","动词"],["พบ","phóp","遇见","动词"],["ขอ","khɔ̌ɔ","请求","动词"],["นำ","nam","带领","动词"],["สั่ง","sàŋ","命令/点(餐)","动词"],["แนะนำ","nɛ́-nam","推荐","动词"],["ตรวจ","trùat","检查","动词"],["จอง","cɔɔŋ","预订","动词"],
-["ดี","dii","好","形容词"],["ใหญ่","yài","大","形容词"],["เล็ก","lék","小","形容词"],["ยาว","yaao","长","形容词"],["สั้น","sân","短","形容词"],["สูง","sǔuŋ","高","形容词"],["เตี้ย","tîa","矮","形容词"],["อ้วน","ûan","胖","形容词"],["ผอม","phɔ̌ɔm","瘦","形容词"],["ร้อน","rɔ́ɔn","热","形容词"],["เย็น","yen","冷","形容词"],["หนัก","nàk","重","形容词"],["เบา","bao","轻","形容词"],["เร็ว","reo","快","形容词"],["ช้า","cháa","慢","形容词"],["ใหม่","mài","新","形容词"],["เก่า","kào","旧","形容词"],["สะอาด","sa-àat","干净","形容词"],["สกปรก","sòk-ka-pròk","脏","形容词"],["สวย","sǔai","漂亮","形容词"],["หล่อ","lɔ̀ɔ","帅","形容词"],["อร่อย","a-rɔ̀i","好吃","形容词"],["ถูก","thùuk","便宜","形容词"],["แพง","phɛɛŋ","贵","形容词"],["ง่าย","ŋâai","容易","形容词"],["ยาก","yâak","困难","形容词"],["สำคัญ","sǎm-khan","重要","形容词"],["น่ารัก","nâa-rák","可爱","形容词"],["ฉลาด","cha-làat","聪明","形容词"],["สนุก","sa-nùk","有趣","形容词"],["แข็งแรง","khɛ̌ŋ-rɛɛŋ","强壮","形容词"],["อันตราย","an-ta-raai","危险","形容词"],["ปลอดภัย","plɔ̀ɔt-phai","安全","形容词"],["มั่นใจ","mân-cai","自信","形容词"],["ขยัน","kha-yan","勤劳","形容词"],["ขี้เกียจ","khîi-kìat","懒惰","形容词"],["น่าเบื่อ","nâa-bɯ̀a","无聊","形容词"],["ถูกต้อง","thùuk-tɔ̂ŋ","正确","形容词"],["ผิด","phìt","错误","形容词"],["พอดี","phɔɔ-dii","刚好","形容词"],
-["ดีใจ","dii-cai","高兴","情感"],["เสียใจ","sǐa-cai","难过","情感"],["โกรธ","kròot","生气","情感"],["กลัว","klua","害怕","情感"],["แปลกใจ","plɛ̀ɛk-cai","惊讶","情感"],["เบื่อ","bɯ̀a","无聊","情感"],["เหนื่อย","nɯ̀ai","累","情感"],["หิว","hǐw","饿","情感"],["อิ่ม","ìm","吃饱","情感"],["ง่วง","ŋûaŋ","困","情感"],["เครียด","khrîat","有压力","情感"],["ตื่นเต้น","tɯ̀ɯn-tên","兴奋","情感"],["มีความสุข","mii-khwaam-sùk","幸福","情感"],["โดดเดี่ยว","dòot-dìaw","孤独","情感"],
-["ที่นี่","thîi-nîi","这里","方位"],["ที่นั่น","thîi-nân","那里","方位"],["ข้างบน","khâaŋ-bon","上面","方位"],["ข้างล่าง","khâaŋ-lâaŋ","下面","方位"],["ข้างหน้า","khâaŋ-nâa","前面","方位"],["ข้างหลัง","khâaŋ-lǎŋ","后面","方位"],["ข้างซ้าย","khâaŋ-sáai","左边","方位"],["ข้างขวา","khâaŋ-khwǎa","右边","方位"],["ใกล้","klâi","近","方位"],["ไกล","klai","远","方位"],["ตรงกลาง","troŋ-klaaŋ","中间","方位"],["ระหว่าง","ra-wàaŋ","之间","方位"],["ใน","nai","里面","方位"],["นอก","nɔ̂ɔk","外面","方位"],["ข้างๆ","khâaŋ-khâaŋ","旁边","方位"],
-["บ้าน","bâan","家","地点"],["โรงเรียน","rooŋ-rian","学校","地点"],["มหาวิทยาลัย","ma-hǎa-wít-tha-yaa-lai","大学","地点"],["โรงพยาบาล","rooŋ-pha-yaa-baan","医院","地点"],["ร้านอาหาร","ráan-aa-hǎan","餐厅","地点"],["ตลาด","ta-làat","市场","地点"],["ห้างสรรพสินค้า","hâaŋ-sàp-sin-kháa","百货商场","地点"],["สนามบิน","sa-nǎam-bin","机场","地点"],["สถานีรถไฟ","sa-thǎa-nii-rót-fai","火车站","地点"],["ธนาคาร","tha-naa-khaan","银行","地点"],["วัด","wát","寺庙","地点"],["โรงแรม","rooŋ-rɛɛm","酒店","地点"],["ร้านสะดวกซื้อ","ráan-sa-dùak-sɯ́ɯ","便利店","地点"],["ถนน","tha-nǒn","马路","地点"],["ทะเล","tha-lee","海","地点"],["ภูเขา","phuu-khao","山","地点"],["สวนสาธารณะ","sǔan-sǎa-thaa-ra-na","公园","地点"],["ไปรษณีย์","prai-sa-nii","邮局","地点"],
-["รถ","rót","车","交通"],["รถยนต์","rót-yon","汽车","交通"],["รถแท็กซี่","rót-thɛ́k-sîi","出租车","交通"],["รถไฟ","rót-fai","火车","交通"],["รถไฟฟ้า","rót-fai-fáa","地铁","交通"],["รถเมล์","rót-mee","公共汽车","交通"],["เรือ","rɯa","船","交通"],["เครื่องบิน","khrɯ̂aŋ-bin","飞机","交通"],["จักรยาน","càk-kra-yaan","自行车","交通"],["มอเตอร์ไซค์","mɔɔ-tə̂ə-sai","摩托车","交通"],["รถตุ๊กตุ๊ก","rót-túk-túk","嘟嘟车","交通"],["ตั๋ว","tǔa","票","交通"],["เส้นทาง","sên-thaaŋ","路线","交通"],["สี่แยก","sìi-yɛ̀ɛk","十字路口","交通"],
-["ราคา","raa-khaa","价格","购物"],["เท่าไหร่","thâo-rài","多少钱","购物"],["ลด","lót","打折","购物"],["เงิน","ŋəən","钱","购物"],["บาท","bàat","泰铢","购物"],["ใบเสร็จ","bai-sèt","收据","购物"],["ถุง","thǔŋ","袋子","购物"],["ของ","khɔ̌ɔŋ","东西","购物"],["ฟรี","frii","免费","购物"],["คุณภาพ","khun-na-phâap","质量","购物"],["ขนาด","kha-nàat","尺寸","购物"],["ส่วนลด","sùan-lót","折扣","购物"],
-["สุขภาพ","sùk-kha-phâap","健康","健康"],["เจ็บ","cèp","疼","健康"],["ป่วย","pûai","生病","健康"],["ยา","yaa","药","健康"],["หมอ","mɔ̌ɔ","医生","健康"],["พยาบาล","pha-yaa-baan","护士","健康"],["ไข้","khâi","发烧","健康"],["ปวดหัว","pùat-hǔa","头痛","健康"],["ท้องเสีย","thɔ́ɔŋ-sǐa","腹泻","健康"],["ไอ","ai","咳嗽","健康"],["จาม","caam","打喷嚏","健康"],["เป็นหวัด","pen-wàt","感冒","健康"],["แพ้","phɛ̂","过敏","健康"],["แผล","phɛ̌ɛ","伤口","健康"],["พักผ่อน","phák-phɔ̀ɔn","休息","健康"],["อาการ","aa-kaan","症状","健康"],
-["งาน","ŋaan","工作","工作"],["บริษัท","bɔɔ-ri-sàt","公司","工作"],["สำนักงาน","sǎm-nák-ŋaan","办公室","工作"],["เงินเดือน","ŋəən-dɯan","工资","工作"],["ประชุม","pra-chum","开会","工作"],["หัวหน้า","hǔa-nâa","上司","工作"],["โครงการ","khrooŋ-kaan","项目","工作"],["ธุรกิจ","thú-ra-kìt","生意","工作"],["ครู","khruu","老师","工作"],["นักเรียน","nák-rian","学生","工作"],["หมอ","mɔ̌ɔ","医生","工作"],["ตำรวจ","tam-rùat","警察","工作"],["วิศวกร","wít-sa-wa-kɔɔn","工程师","工作"],["นักบัญชี","nák-ban-chii","会计","工作"],["โปรแกรมเมอร์","proo-krɛɛm-mə̂ə","程序员","工作"],
-["ผม","phǒm","我(男)","代词"],["ฉัน","chǎn","我(女)","代词"],["คุณ","khun","你","代词"],["เขา","khǎo","他/她","代词"],["เรา","rao","我们","代词"],["พวกเขา","phûak-khǎo","他们","代词"],["ใคร","khrai","谁","代词"],["อะไร","a-rai","什么","代词"],["ที่ไหน","thîi-nǎi","哪里","代词"],["ทำไม","tham-mai","为什么","代词"],["อย่างไร","yàaŋ-rai","怎么样","代词"],["เมื่อไหร่","mɯ̂a-rài","什么时候","代词"],
-["และ","lɛ́","和","连词"],["หรือ","rɯɯ","或者","连词"],["แต่","tɛ̀ɛ","但是","连词"],["เพราะ","phrɔ́","因为","连词"],["ถ้า","thâa","如果","连词"],["แล้ว","lɛ́ɛw","然后/了","连词"],["กับ","kàp","和/跟","连词"],["จาก","càak","从/来自","连词"],["ถึง","thɯŋ","到/至","连词"],["เมื่อ","mɯ̂a","当…时","连词"],
-["มาก","mâak","很/多","副词"],["น้อย","nɔ́ɔi","少","副词"],["เล็กน้อย","lék-nɔ́ɔi","一点点","副词"],["เกินไป","kəən-pai","太…了","副词"],["ทั้งหมด","tháŋ-mòt","全部","副词"],["ทุก","thúk","每个","副词"],["ไม่","mâi","不","副词"],["ไม่มี","mâi-mii","没有","副词"],["ด้วย","dûai","也/一起","副词"],["ยัง","yaŋ","还","副词"],["อีก","ìik","再","副词"],["เพียง","phiaŋ","只/仅","副词"],
-["อากาศ","aa-kàat","天气","自然"],["ฝน","fǒn","雨","自然"],["แดด","dɛ̀ɛt","阳光","自然"],["ลม","lom","风","自然"],["เมฆ","méek","云","自然"],["หมอก","mɔ̀ɔk","雾","自然"],["ป่า","pâa","森林","自然"],["แม่น้ำ","mɛ̂ɛ-nám","河流","自然"],["น้ำตก","nám-tòk","瀑布","自然"],["ดาว","daao","星星","自然"],["พระจันทร์","phrá-can","月亮","自然"],["พระอาทิตย์","phrá-aa-thít","太阳","自然"],["น้ำท่วม","nám-thûam","洪水","自然"],["แผ่นดินไหว","phɛ̀ɛn-din-wǎi","地震","自然"],
-["มือถือ","mɯɯ-thɯɯ","手机","科技"],["คอมพิวเตอร์","khɔm-phiw-tə̂ə","电脑","科技"],["อินเทอร์เน็ต","in-thəə-nét","互联网","科技"],["ทีวี","thii-wii","电视","科技"],["กล้อง","klɔ̂ɔŋ","相机","科技"],["แอพ","ɛ́ɛp","应用程序","科技"],["ไวไฟ","wai-fai","Wi-Fi","科技"],["ข้อความ","khɔ̂ɔ-khwaam","短信","科技"],["อีเมล","ii-meel","电子邮件","科技"],["รหัสผ่าน","ra-hàt-phàan","密码","科技"],["ชาร์จ","châat","充电","科技"],
-["เสื้อ","sɯ̂a","上衣","衣物"],["กางเกง","kaaŋ-keeŋ","裤子","衣物"],["กระโปรง","kra-prooŋ","裙子","衣物"],["รองเท้า","rɔɔŋ-tháo","鞋子","衣物"],["ถุงเท้า","thǔŋ-tháo","袜子","衣物"],["หมวก","mùak","帽子","衣物"],["กระเป๋า","kra-pǎo","包","衣物"],["นาฬิกา","naa-li-kaa","手表","衣物"],["แว่นตา","wɛ̂ɛn-taa","眼镜","衣物"],["ผ้าพันคอ","phâa-phan-khɔɔ","围巾","衣物"],["เข็มขัด","khěm-khàt","皮带","衣物"],
-["กีฬา","kii-laa","体育","运动"],["ฟุตบอล","fút-bɔɔn","足球","运动"],["ว่ายน้ำ","wâai-nám","游泳","运动"],["มวยไทย","muai-thai","泰拳","运动"],["เทนนิส","then-nít","网球","运动"],["แบดมินตัน","bɛ̀ɛt-min-tan","羽毛球","运动"],["บาสเก็ตบอล","bàat-sà-kèt-bɔɔn","篮球","运动"],["ออกกำลังกาย","ɔ̀ɔk-kam-laŋ-kaai","锻炼","运动"],["โยคะ","yoo-khá","瑜伽","运动"],["วิ่งจ๊อกกิ้ง","wîŋ-cɔ́k-kîŋ","慢跑","运动"],
-["ดนตรี","don-trii","音乐","娱乐"],["ภาพยนตร์","phâap-pha-yon","电影","娱乐"],["วาดรูป","wâat-rûup","画画","娱乐"],["ท่องเที่ยว","thɔ̂ŋ-thîaw","旅游","娱乐"],["เต้นรำ","tên-ram","跳舞","娱乐"],["ร้องเพลง","rɔ́ɔŋ-phleŋ","唱歌","娱乐"],["ทำอาหาร","tham-aa-hǎan","做饭","娱乐"],["อ่านหนังสือ","àan-nǎŋ-sɯɯ","读书","娱乐"],["ถ่ายรูป","thàai-rûup","拍照","娱乐"],["เล่นเกม","lên-keem","玩游戏","娱乐"],
-["วัด","wát","寺庙","文化"],["สงกรานต์","sǒŋ-kraan","宋干节","文化"],["ไหว้","wâi","合十礼","文化"],["กรุงเทพ","kruŋ-thêep","曼谷","文化"],["เชียงใหม่","chiaŋ-mài","清迈","文化"],["ภูเก็ต","phuu-kèt","普吉岛","文化"],["อยุธยา","a-yút-tha-yaa","大城","文化"],["พระ","phrá","僧侣","文化"],["ลอยกระทง","lɔɔi-kra-thoŋ","水灯节","文化"],["ตรุษจีน","trùt-ciin","春节","文化"],
-["ห้องนอน","hɔ̂ŋ-nɔɔn","卧室","住房"],["ห้องน้ำ","hɔ̂ŋ-nám","卫生间","住房"],["ห้องครัว","hɔ̂ŋ-khrua","厨房","住房"],["ห้องนั่งเล่น","hɔ̂ŋ-nâŋ-lên","客厅","住房"],["หน้าต่าง","nâa-tàaŋ","窗户","住房"],["ประตู","pra-tuu","门","住房"],["เตียง","tiaŋ","床","住房"],["โต๊ะ","tó","桌子","住房"],["เก้าอี้","kâo-îi","椅子","住房"],["ตู้เย็น","tûu-yen","冰箱","住房"],["เครื่องปรับอากาศ","khrɯ̂aŋ-pràp-aa-kàat","空调","住房"],
-["หนังสือ","nǎŋ-sɯɯ","书","学习"],["สมุด","sa-mùt","笔记本","学习"],["ปากกา","pàak-kaa","笔","学习"],["ดินสอ","din-sɔ̌ɔ","铅笔","学习"],["การบ้าน","kaan-bâan","作业","学习"],["สอบ","sɔ̀ɔp","考试","学习"],["ห้องสมุด","hɔ̂ŋ-sa-mùt","图书馆","学习"],["ปริญญา","pa-rin-yaa","学位","学习"],["วิชา","wí-chaa","科目","学习"],["ภาษา","phaa-sǎa","语言","学习"],
-["เพื่อน","phɯ̂an","朋友","社交"],["แฟน","fɛɛn","恋人","社交"],["เพื่อนบ้าน","phɯ̂an-bâan","邻居","社交"],["ของขวัญ","khɔ̌ɔŋ-khwǎn","礼物","社交"],["วันเกิด","wan-kəət","生日","社交"],["แต่งงาน","tɛ̀ŋ-ŋaan","结婚","社交"],["นัด","nát","约定","社交"],["เชิญ","chəən","邀请","社交"],["ยินดีต้อนรับ","yin-dii-tɔ̂ɔn-ráp","欢迎","社交"],["ปาร์ตี้","paa-tîi","派对","社交"]
+// ══ 12个泰语场景，共~150词 ══
+// 格式: [泰文, AAA拼音, 中文, 场景key]
+const SCENES=[
+{key:'greet',emoji:'🙏',title:'打招呼',sub:'问候与日常用语',color:'#e8f5ef',accent:'#1a6b4a',
+ words:[
+  ['สวัสดี','sa-wàt-dii','你好','greet'],
+  ['ขอบคุณ','khɔ̂ɔp-khun','谢谢','greet'],
+  ['ไม่เป็นไร','mâi-pen-rai','没关系','greet'],
+  ['ขอโทษ','khɔ̌ɔ-thôot','对不起','greet'],
+  ['ใช่','châi','是的','greet'],
+  ['ไม่','mâi','不','greet'],
+  ['ครับ','khráp','是(男)','greet'],
+  ['ค่ะ','khâ','是(女)','greet'],
+  ['ลาก่อน','laa-kɔ̀ɔn','再见','greet'],
+  ['สบายดีไหม','sa-baai-dii-mǎi','你好吗','greet'],
+  ['ยินดีที่ได้รู้จัก','yin-dii-rúu-càk','很高兴认识你','greet'],
+  ['แล้วเจอกัน','lɛ́ɛw-cəə-kan','回头见','greet'],
+]},
+{key:'food',emoji:'🍜',title:'街边小吃',sub:'泰国美食点餐',color:'#fff8ee',accent:'#e67e22',
+ words:[
+  ['ข้าว','khâo','米饭','food'],
+  ['ก๋วยเตี๋ยว','kǔai-tǐaw','米粉','food'],
+  ['ผัดไทย','phàt-thai','炒泰面','food'],
+  ['ต้มยำ','tôm-yam','冬阴功','food'],
+  ['ส้มตำ','sôm-tam','青木瓜沙拉','food'],
+  ['ไก่','kài','鸡','food'],
+  ['หมู','mǔu','猪','food'],
+  ['กุ้ง','kûŋ','虾','food'],
+  ['น้ำ','nám','水','food'],
+  ['กาแฟ','kaa-fɛɛ','咖啡','food'],
+  ['เผ็ด','phèt','辣','food'],
+  ['อร่อย','a-rɔ̀i','好吃','food'],
+  ['เท่าไหร่','thâo-rài','多少钱','food'],
+  ['เก็บตังค์','kèp-taŋ','买单','food'],
+]},
+{key:'temple',emoji:'🛕',title:'寺庙参观',sub:'泰国文化与佛教',color:'#fff5e6',accent:'#c0762a',
+ words:[
+  ['วัด','wát','寺庙','temple'],
+  ['พระ','phrá','僧侣','temple'],
+  ['พระพุทธรูป','phrá-phút-tha-rûup','佛像','temple'],
+  ['ไหว้','wâi','合十礼拜','temple'],
+  ['บุญ','bun','功德','temple'],
+  ['ทำบุญ','tham-bun','做功德','temple'],
+  ['สงกรานต์','sǒŋ-kraan','宋干节','temple'],
+  ['ลอยกระทง','lɔɔi-kra-thoŋ','水灯节','temple'],
+  ['กรุงเทพ','kruŋ-thêep','曼谷','temple'],
+  ['เชียงใหม่','chiaŋ-mài','清迈','temple'],
+  ['สวย','sǔai','漂亮','temple'],
+  ['ศักดิ์สิทธิ์','sàk-sìt','神圣','temple'],
+]},
+{key:'market',emoji:'🛒',title:'恰图恰市场',sub:'购物砍价',color:'#eefaf3',accent:'#27ae60',
+ words:[
+  ['ตลาด','ta-làat','市场','market'],
+  ['ซื้อ','sɯ́ɯ','买','market'],
+  ['ขาย','khǎai','卖','market'],
+  ['ราคา','raa-khaa','价格','market'],
+  ['แพง','phɛɛŋ','贵','market'],
+  ['ถูก','thùuk','便宜','market'],
+  ['ลด','lót','打折','market'],
+  ['บาท','bàat','泰铢','market'],
+  ['ของ','khɔ̌ɔŋ','东西','market'],
+  ['สวยมาก','sǔai-mâak','很漂亮','market'],
+  ['เอา','ao','要/拿','market'],
+  ['ไม่เอา','mâi-ao','不要','market'],
+]},
+{key:'transport',emoji:'🛺',title:'嘟嘟车出行',sub:'交通与方向',color:'#f0f0ff',accent:'#6c5ce7',
+ words:[
+  ['รถตุ๊กตุ๊ก','rót-túk-túk','嘟嘟车','transport'],
+  ['แท็กซี่','thɛ́k-sîi','出租车','transport'],
+  ['รถไฟฟ้า','rót-fai-fáa','地铁/轻轨','transport'],
+  ['รถเมล์','rót-mee','公共汽车','transport'],
+  ['เรือ','rɯa','船','transport'],
+  ['สนามบิน','sa-nǎam-bin','机场','transport'],
+  ['ไป','pai','去','transport'],
+  ['มา','maa','来','transport'],
+  ['ซ้าย','sáai','左','transport'],
+  ['ขวา','khwǎa','右','transport'],
+  ['ตรงไป','troŋ-pai','直走','transport'],
+  ['ที่นี่','thîi-nîi','这里','transport'],
+  ['เท่าไหร่','thâo-rài','多少钱','transport'],
+]},
+{key:'family',emoji:'👨‍👩‍👧',title:'家庭关系',sub:'称呼家人',color:'#fff0f8',accent:'#e84393',
+ words:[
+  ['พ่อ','phɔ̂ɔ','父亲','family'],
+  ['แม่','mɛ̂ɛ','母亲','family'],
+  ['พี่ชาย','phîi-chaai','哥哥','family'],
+  ['พี่สาว','phîi-sǎao','姐姐','family'],
+  ['น้องชาย','nɔ́ɔŋ-chaai','弟弟','family'],
+  ['น้องสาว','nɔ́ɔŋ-sǎao','妹妹','family'],
+  ['ลูก','lûuk','孩子','family'],
+  ['ปู่','pùu','爷爷','family'],
+  ['ย่า','yâa','奶奶','family'],
+  ['ครอบครัว','khrɔ̂ɔp-khrua','家庭','family'],
+  ['เพื่อน','phɯ̂an','朋友','family'],
+  ['แฟน','fɛɛn','恋人','family'],
+]},
+{key:'body',emoji:'🧍',title:'身体部位',sub:'人体各部位',color:'#fef0ee',accent:'#c0392b',
+ words:[
+  ['หัว','hǔa','头','body'],
+  ['ตา','taa','眼睛','body'],
+  ['หู','hǔu','耳朵','body'],
+  ['จมูก','ca-mùuk','鼻子','body'],
+  ['ปาก','pàak','嘴','body'],
+  ['มือ','mɯɯ','手','body'],
+  ['เท้า','tháo','脚','body'],
+  ['ท้อง','thɔ́ɔŋ','肚子','body'],
+  ['หัวใจ','hǔa-cai','心脏','body'],
+  ['ผม','phǒm','头发','body'],
+  ['ฟัน','fan','牙齿','body'],
+  ['แขน','khɛ̌ɛn','手臂','body'],
+]},
+{key:'health',emoji:'🏥',title:'健康就医',sub:'生病与看医生',color:'#fff0f0',accent:'#e74c3c',
+ words:[
+  ['เจ็บ','cèp','疼','health'],
+  ['ป่วย','pûai','生病','health'],
+  ['ยา','yaa','药','health'],
+  ['หมอ','mɔ̌ɔ','医生','health'],
+  ['โรงพยาบาล','rooŋ-pha-yaa-baan','医院','health'],
+  ['ไข้','khâi','发烧','health'],
+  ['ปวดหัว','pùat-hǔa','头痛','health'],
+  ['เป็นหวัด','pen-wàt','感冒','health'],
+  ['พักผ่อน','phák-phɔ̀ɔn','休息','health'],
+  ['นอนหลับ','nɔɔn-làp','睡觉','health'],
+  ['ไม่สบาย','mâi-sa-baai','不舒服','health'],
+  ['ดีขึ้น','dii-khɯ̂n','好多了','health'],
+]},
+{key:'number',emoji:'🔢',title:'数字时间',sub:'数数与日期',color:'#f8f0ff',accent:'#8e44ad',
+ words:[
+  ['หนึ่ง','nɯ̀ŋ','一','number'],
+  ['สอง','sɔ̌ɔŋ','二','number'],
+  ['สาม','sǎam','三','number'],
+  ['สี่','sìi','四','number'],
+  ['ห้า','hâa','五','number'],
+  ['หก','hòk','六','number'],
+  ['เจ็ด','cèt','七','number'],
+  ['แปด','pɛ̀ɛt','八','number'],
+  ['เก้า','kâo','九','number'],
+  ['สิบ','sìp','十','number'],
+  ['ร้อย','rɔ́ɔi','百','number'],
+  ['วันนี้','wan-níi','今天','number'],
+  ['พรุ่งนี้','phrûŋ-níi','明天','number'],
+  ['เมื่อวาน','mɯ̂a-waan','昨天','number'],
+]},
+{key:'nature',emoji:'🌴',title:'热带自然',sub:'泰国自然风光',color:'#efffef',accent:'#27ae60',
+ words:[
+  ['ทะเล','tha-lee','海','nature'],
+  ['ชายหาด','chaai-hàat','海滩','nature'],
+  ['ภูเขา','phuu-khao','山','nature'],
+  ['ป่า','pâa','森林','nature'],
+  ['ดอกไม้','dɔ̀ɔk-máai','花','nature'],
+  ['ต้นไม้','tôn-máai','树','nature'],
+  ['แดด','dɛ̀ɛt','太阳/晴','nature'],
+  ['ฝน','fǒn','雨','nature'],
+  ['ร้อน','rɔ́ɔn','热','nature'],
+  ['สวยงาม','sǔai-ŋaam','美丽','nature'],
+  ['น้ำตก','nám-tòk','瀑布','nature'],
+  ['ดาว','daao','星星','nature'],
+]},
+{key:'feeling',emoji:'😊',title:'情感表达',sub:'心情与感受',color:'#fffaee',accent:'#f1c40f',
+ words:[
+  ['ดีใจ','dii-cai','高兴','feeling'],
+  ['เสียใจ','sǐa-cai','难过','feeling'],
+  ['โกรธ','kròot','生气','feeling'],
+  ['กลัว','klua','害怕','feeling'],
+  ['ชอบ','chɔ̂ɔp','喜欢','feeling'],
+  ['รัก','rák','爱','feeling'],
+  ['เบื่อ','bɯ̀a','无聊','feeling'],
+  ['เหนื่อย','nɯ̀ai','累','feeling'],
+  ['หิว','hǐw','饿','feeling'],
+  ['อิ่ม','ìm','吃饱','feeling'],
+  ['ตื่นเต้น','tɯ̀ɯn-tên','兴奋','feeling'],
+  ['มีความสุข','mii-khwaam-sùk','幸福','feeling'],
+]},
+{key:'work',emoji:'💼',title:'工作学习',sub:'职场与学校',color:'#eef4ff',accent:'#2c3e50',
+ words:[
+  ['ทำงาน','tham-ŋaan','工作','work'],
+  ['เรียน','rian','学习','work'],
+  ['โรงเรียน','rooŋ-rian','学校','work'],
+  ['ครู','khruu','老师','work'],
+  ['นักเรียน','nák-rian','学生','work'],
+  ['หนังสือ','nǎŋ-sɯɯ','书','work'],
+  ['ภาษาไทย','phaa-sǎa-thai','泰语','work'],
+  ['เข้าใจ','khâo-cai','明白','work'],
+  ['ไม่เข้าใจ','mâi-khâo-cai','不明白','work'],
+  ['พูดช้าๆ','phûut-cháa-cháa','说慢一点','work'],
+  ['อีกครั้ง','ìik-khráŋ','再一次','work'],
+  ['เงินเดือน','ŋəən-dɯan','工资','work'],
+]}
 ];
 
-// 句子 [泰文, 拼音, 中文, 场景]
-const S=[
-["สวัสดีครับ","sa-wàt-dii khráp","你好（男）","问候"],["สวัสดีค่ะ","sa-wàt-dii khâ","你好（女）","问候"],
-["คุณชื่ออะไร","khun chɯ̂ɯ a-rai","你叫什么名字？","问候"],["ยินดีที่ได้รู้จัก","yin-dii thîi dâi rúu-càk","很高兴认识你。","问候"],
-["ขอโทษครับ","khɔ̌ɔ-thôot khráp","对不起。","问候"],["ไม่เป็นไรค่ะ","mâi-pen-rai khâ","没关系。","问候"],
-["สบายดีไหมครับ","sa-baai-dii mǎi khráp","你好吗？","问候"],["ขอบคุณมากครับ","khɔ̂ɔp-khun mâak khráp","非常感谢！","问候"],
-["ลาก่อนครับ","laa-kɔ̀ɔn khráp","再见！","问候"],["คุณพูดภาษาไทยได้ไหม","khun phûut phaasǎa thai dâi mǎi","你会说泰语吗？","问候"],
-["ผมพูดภาษาไทยได้นิดหน่อย","phǒm phûut phaasǎa thai nít nɔ̀oi","我会说一点泰语。","问候"],["คุณมาจากที่ไหน","khun maa càak thîi-nǎi","你从哪里来？","问候"],
-["วันนี้เป็นวันอะไร","wan-níi pen wan a-rai","今天是星期几？","时间"],["กี่โมงแล้ว","kìi-mooŋ-lɛ́ɛw","现在几点了？","时间"],
-["พรุ่งนี้ว่างไหม","phrûŋ-níi wâaŋ mǎi","明天有空吗？","时间"],["วันนี้อากาศเป็นยังไง","wan-níi aa-kàat pen yaŋ-ŋai","今天天气怎么样？","时间"],
-["วันนี้ร้อนมาก","wan-níi rɔ́ɔn mâak","今天非常热。","自然"],["ฝนจะตกไหม","fǒn ca tòk mǎi","会下雨吗？","自然"],
-["มีลมพัดเย็นๆ","mii lom phát yen-yen","有凉风吹。","自然"],
-["อันนี้ราคาเท่าไหร่","an-níi raa-khaa thâo-rài","这个多少钱？","购物"],["อันนี้ราคาร้อยบาท","an-níi raa-khaa rɔ́ɔi bàat","这个一百铢。","购物"],
-["แพงไปหน่อย ลดได้ไหม","phɛɛŋ-pai-nɔ̀oi lót-dâi-mǎi","贵了点，能便宜吗？","购物"],
-["มีสีดำไหม","mii sǐi-dam mǎi","有黑色的吗？","购物"],["ขอใบเสร็จด้วยครับ","khɔ̌ɔ bai-sèt dûai khráp","请给我收据。","购物"],
-["จะสั่งอะไรดีครับ","ca sàŋ a-rai dii khráp","你想点什么？","餐厅"],["ผมเอาผัดไทยหนึ่งจาน","phǒm ao phàt-thai nɯŋ-caan","我要一份炒泰面。","餐厅"],
-["เผ็ดน้อยได้ไหม","phèt-nɔ́ɔi dâi-mǎi","可以少辣吗？","餐厅"],["ไม่เอาพริกนะครับ","mâi-ao-phrík ná khráp","不要辣椒谢谢。","餐厅"],
-["อร่อยมากเลย","a-rɔ̀i mâak loei","太好吃了！","餐厅"],["ขอน้ำหนึ่งแก้วครับ","khɔ̌ɔ-nám nɯŋ-kɛ̂ɛw khráp","请给我一杯水。","餐厅"],
-["เก็บตังค์ด้วยครับ","kèp-taŋ dûai khráp","买单谢谢！","餐厅"],["อาหารไทยอร่อยมาก","aa-hǎan-thai a-rɔ̀i mâak","泰国食物非常好吃。","餐厅"],
-["ไปสถานีรถไฟยังไง","pai sa-thǎa-nii-rót-fai yaŋ-ŋai","怎么去火车站？","交通"],
-["รถไฟฟ้าออกกี่โมง","rót-fai-fáa ɔɔk kìi-mooŋ","地铁几点出发？","交通"],
-["มีรถเมล์ไปที่นี่ไหม","mii rót-mee pai thîi-níi mǎi","这里有公交车吗？","交通"],
-["ช่วยบอกทางได้ไหม","chûai bɔɔk-thaaŋ dâi-mǎi","能告诉我路吗？","交通"],
-["แท็กซี่ไปสนามบินเท่าไหร่","thɛ́k-sîi pai sa-nǎam-bin thâo-rài","出租车去机场多少钱？","交通"],
-["เดินตรงไปข้างหน้า","dəən troŋ-pai khâaŋ-nâa","往前直走。","方位地点"],
-["เลี้ยวซ้ายที่สี่แยก","líaw-sáai thîi sìi-yɛ̀ɛk","在十字路口左转。","方位地点"],
-["โรงเรียนอยู่ข้างขวา","rooŋ-rian yùu khâaŋ-khwǎa","学校在右边。","方位地点"],
-["บ้านคุณอยู่ที่ไหน","bâan-khun yùu thîi-nǎi","你家在哪里？","方位地点"],
-["เดินสามนาทีก็ถึงแล้ว","dəən sǎam-naa-thii kɔ̂ɔ-thɯŋ-lɛ́ɛw","走三分钟就到了。","方位地点"],
-["ผมรู้สึกไม่สบาย","phǒm rúu-sɯ̂k mâi-sa-baai","我觉得不舒服。","健康"],
-["ผมเป็นไข้","phǒm pen khâi","我发烧了。","健康"],
-["โรงพยาบาลอยู่ที่ไหน","rooŋ-pha-yaa-baan yùu thîi-nǎi","医院在哪里？","健康"],
-["พักผ่อนให้มากๆนะ","phák-phɔ̀ɔn hâi mâak-mâak ná","要好好休息哦。","健康"],
-["กินยาวันละสามมื้อ","kin-yaa wan-lá sǎam-mɯ́ɯ","每天吃三次药。","健康"],
-["แม่ผมเป็นครู","mɛ̂ɛ phǒm pen khruu","我妈妈是老师。","家庭"],
-["พ่อแม่รักผมมาก","phɔ̂ɔ-mɛ̂ɛ rák phǒm mâak","父母很爱我。","家庭"],
-["น้องชายผมอายุสิบห้าปี","nɔ́ɔŋ-chaai phǒm aa-yú sìp-hâa-pii","我弟弟十五岁。","家庭"],
-["ผมเรียนภาษาไทย","phǒm rian phaasǎa-thai","我在学泰语。","工作学习"],
-["งานนี้ยากมาก","ŋaan-níi yâak mâak","这份工作很难。","工作学习"],
-["พูดอีกครั้งได้ไหม","phûut ìik-khráŋ dâi-mǎi","可以再说一遍吗？","工作学习"],
-["พูดช้าๆหน่อยได้ไหม","phûut cháa-cháa nɔ̀oi dâi-mǎi","能说慢一点吗？","工作学习"],
-["อันนี้ภาษาไทยพูดว่าอะไร","an-níi phaasǎa-thai phûut-wâa a-rai","这个泰语怎么说？","工作学习"],
-["ผมไม่เข้าใจ","phǒm mâi khâo-cai","我不明白。","工作学习"],
-["ผมรักคุณมาก","phǒm rák khun mâak","我非常爱你。","情感"],
-["ดีใจที่ได้พบคุณ","dii-cai thîi dâi phóp khun","很高兴见到你。","情感"],
-["ผมเบื่อแล้ว","phǒm bɯ̀a lɛ́ɛw","我无聊了。","情感"],
-["ผมหิวข้าวแล้ว","phǒm hǐw-khâo lɛ́ɛw","我饿了。","情感"],
-["ผมเหนื่อยมากวันนี้","phǒm nɯ̀ai mâak wan-níi","我今天很累。","情感"],
-["คุณเป็นคนดีมาก","khun pen khon-dii mâak","你真是个好人。","情感"],
-["คุณเคยไปวัดพระแก้วไหม","khun khəəi pai wát-phrá-kɛ̂ɛw mǎi","你去过玉佛寺吗？","文化"],
-["วันสงกรานต์เราเล่นน้ำ","wan sǒŋ-kraan rao lên-nám","宋干节我们泼水。","文化"],
-["เมืองไทยมีวัดสวยมาก","mɯɯŋ-thai mii wát sǔai mâak","泰国有很多美丽的寺庙。","文化"],
-["ผมชอบดูหนัง","phǒm chɔ̂ɔp duu-nǎŋ","我喜欢看电影。","娱乐"],
-["ราวไปเที่ยวทะเลกันนะ","rao pai thîaw tha-lee kan ná","我们去海边玩吧。","娱乐"],
-["ไปดูมวยไทยด้วยกันไหม","pai duu muai-thai dûai-kan mǎi","一起去看泰拳吗？","娱乐"]
-];
+const WORDS=[];
+const seen=new Set();
+SCENES.forEach(s=>s.words.forEach(w=>{if(!seen.has(w[0])){seen.add(w[0]);WORDS.push(w);}}));
 
-const CATS=[...new Set(W.map(w=>w[3]))];
-let learned=new Set();
-let wi=0,si=0,lm='w',qm='p2c';
-let streak=0,qok=0,qno=0,qcur=null;
-let fw=[...W],fs=[...S];
+// ══ SVG场景插画 ══
+function makeSVG(key,words){
+const cfgs={
+greet:{bg:'#e8f5ef',title:'สวัสดี · 打招呼',
+ sh:[
+  {t:'circle',cx:100,cy:100,r:42,f:'#fcd5a0'},
+  {t:'rect',x:72,y:142,w:56,h:70,f:'#e8a020',rx:8},
+  {t:'circle',cx:260,cy:100,r:42,f:'#a0d5fc'},
+  {t:'rect',x:232,y:142,w:56,h:70,f:'#1a6b4a',rx:8},
+  {t:'text',x:88,y:108,txt:'😊',sz:30},
+  {t:'text',x:248,y:108,txt:'🙏',sz:30},
+  {t:'path',d:'M145,95 Q180,65 215,95',stroke:'#1a6b4a',sw:3,f:'none'},
+  {t:'rect',x:105,y:200,w:150,h:38,f:'#e8f5ef',rx:10},
+  {t:'text',x:180,y:223,txt:'สวัสดีครับ 👋',sz:12,fill:'#1a6b4a'},
+ ],
+ pins:[
+  {x:100,y:52,word:'สวัสดี',lbl:'สวัสดี·你好'},
+  {x:260,y:52,word:'ขอบคุณ',lbl:'ขอบคุณ·谢谢'},
+  {x:55,y:165,word:'ครับ',lbl:'ครับ·是(男)'},
+  {x:295,y:165,word:'ค่ะ',lbl:'ค่ะ·是(女)'},
+  {x:88,y:245,word:'ใช่',lbl:'ใช่·是的'},
+  {x:272,y:245,word:'ไม่',lbl:'ไม่·不'},
+  {x:180,y:160,word:'ลาก่อน',lbl:'ลาก่อน·再见'},
+ ]},
+food:{bg:'#fff8ee',title:'อาหารไทย · 泰国美食',
+ sh:[
+  {t:'rect',x:20,y:30,w:320,h:220,f:'#fffcf5',rx:10},
+  {t:'ellipse',cx:90,cy:155,rx:55,ry:38,f:'#e8d090'},
+  {t:'ellipse',cx:90,cy:155,rx:44,ry:30,f:'#f5e070'},
+  {t:'text',x:90,y:162,txt:'🍜',sz:36},
+  {t:'rect',x:170,y:80,w:80,h:50,f:'#fff',rx:8},
+  {t:'text',x:210,y:112,txt:'☕',sz:30},
+  {t:'rect',x:260,y:80,w:70,f:'#fff',h:50,rx:8},
+  {t:'text',x:295,y:112,txt:'🧃',sz:30},
+  {t:'ellipse',cx:220,cy:170,rx:50,ry:36,f:'#f0c080'},
+  {t:'text',x:220,y:178,txt:'🍛',sz:36},
+  {t:'rect',x:20,y:210,w:320,h:2,f:'#f0e0c0'},
+  {t:'text',x:50,y:240,txt:'🌶️เผ็ด',sz:14,fill:'#c0392b'},
+  {t:'text',x:160,y:240,txt:'😋อร่อย',sz:14,fill:'#e67e22'},
+  {t:'text',x:265,y:240,txt:'💰บาท',sz:14,fill:'#1a6b4a'},
+ ],
+ pins:[
+  {x:90,y:110,word:'ก๋วยเตี๋ยว',lbl:'ก๋วยเตี๋ยว·米粉'},
+  {x:210,y:70,word:'กาแฟ',lbl:'กาแฟ·咖啡'},
+  {x:220,y:128,word:'ข้าว',lbl:'ข้าว·米饭'},
+  {x:50,y:232,word:'เผ็ด',lbl:'เผ็ด·辣'},
+  {x:185,y:232,word:'อร่อย',lbl:'อร่อย·好吃'},
+  {x:275,y:232,word:'บาท',lbl:'บาท·泰铢'},
+  {x:175,y:165,word:'เท่าไหร่',lbl:'เท่าไหร่·多少钱'},
+ ]},
+temple:{bg:'#fff5e6',title:'วัดไทย · 泰国寺庙',
+ sh:[
+  {t:'rect',x:0,y:150,w:360,h:110,f:'#8B6914'},
+  {t:'rect',x:120,y:40,w:120,h:120,f:'#DAA520',rx:4},
+  {t:'polygon',pts:'180,15 120,55 240,55',f:'#B8860B'},
+  {t:'polygon',pts:'180,0 115,45 245,45',f:'#FFD700'},
+  {t:'rect',x:150,y:100,w:60,h:60,f:'#8B6914',rx:2},
+  {t:'circle',cx:180,cy:75,r:18,f:'#FFD700'},
+  {t:'rect',x:30,y:155,w:60,h:100,f:'#DAA520',rx:4},
+  {t:'rect',x:270,y:155,w:60,h:100,f:'#DAA520',rx:4},
+  {t:'text',x:180,y:130,txt:'🙏',sz:22},
+  {t:'text',x:55,y:195,txt:'🪷',sz:24},
+  {t:'text',x:295,y:195,txt:'🪷',sz:24},
+  {t:'text',x:60,y:240,txt:'พระ',sz:12,fill:'#fff'},
+  {t:'text',x:250,y:240,txt:'วัด',sz:12,fill:'#fff'},
+ ],
+ pins:[
+  {x:180,y:25,word:'วัด',lbl:'วัด·寺庙'},
+  {x:55,y:160,word:'พระ',lbl:'พระ·僧侣'},
+  {x:305,y:160,word:'ไหว้',lbl:'ไหว้·合十礼'},
+  {x:180,y:90,word:'พระพุทธรูป',lbl:'พระพุทธรูป·佛像'},
+  {x:100,y:260,word:'สงกรานต์',lbl:'สงกรานต์·宋干节'},
+  {x:260,y:260,word:'กรุงเทพ',lbl:'กรุงเทพ·曼谷'},
+  {x:180,y:200,word:'ทำบุญ',lbl:'ทำบุญ·做功德'},
+ ]},
+market:{bg:'#eefaf3',title:'ตลาด · 市场',
+ sh:[
+  {t:'rect',x:0,y:30,w:360,h:28,f:'#27ae60'},
+  {t:'text',x:180,y:50,txt:'ตลาดนัด · 市场',sz:13,fill:'#fff'},
+  {t:'rect',x:10,y:58,w:100,h:95,f:'#fff',rx:6},
+  {t:'rect',x:120,y:58,w:100,h:95,f:'#fff',rx:6},
+  {t:'rect',x:230,y:58,w:110,h:95,f:'#fff',rx:6},
+  {t:'text',x:60,y:115,txt:'👗👕',sz:22},
+  {t:'text',x:170,y:115,txt:'🛍️💼',sz:22},
+  {t:'text',x:280,y:115,txt:'💍👟',sz:22},
+  {t:'text',x:38,y:145,txt:'ถูก! 100฿',sz:11,fill:'#c0392b'},
+  {t:'text',x:140,y:145,txt:'ลด 50%',sz:11,fill:'#c0392b'},
+  {t:'rect',x:10,y:165,w:330,h:70,f:'#f8fff8',rx:6},
+  {t:'text',x:40,y:195,txt:'ซื้อ(buy)  ขาย(sell)  ลด(discount)',sz:11,fill:'#555'},
+  {t:'text',x:80,y:218,txt:'แพง(expensive)  ถูก(cheap)',sz:11,fill:'#555'},
+ ],
+ pins:[
+  {x:58,y:45,word:'ตลาด',lbl:'ตลาด·市场'},
+  {x:60,y:75,word:'ถูก',lbl:'ถูก·便宜'},
+  {x:172,y:75,word:'ลด',lbl:'ลด·打折'},
+  {x:282,y:75,word:'แพง',lbl:'แพง·贵'},
+  {x:40,y:175,word:'ซื้อ',lbl:'ซื้อ·买'},
+  {x:170,y:175,word:'ขาย',lbl:'ขาย·卖'},
+  {x:290,y:175,word:'ราคา',lbl:'ราคา·价格'},
+ ]},
+transport:{bg:'#f0f0ff',title:'การเดินทาง · 出行',
+ sh:[
+  {t:'rect',x:0,y:185,w:360,h:70,f:'#888'},
+  {t:'rect',x:0,y:190,w:360,h:4,f:'#fff'},
+  {t:'rect',x:0,y:248,w:360,h:4,f:'#fff'},
+  {t:'rect',x:20,y:120,w:90,h:65,f:'#e74c3c',rx:8},
+  {t:'rect',x:110,y:140,w:15,h:40,f:'#c0392b'},
+  {t:'circle',cx:40,cy:188,r:12,f:'#222'},
+  {t:'circle',cx:90,cy:188,r:12,f:'#222'},
+  {t:'text',x:35,y:158,txt:'🛺',sz:28},
+  {t:'rect',x:175,y:95,w:150,h:90,f:'#3498db',rx:6},
+  {t:'rect',x:160,y:128,w:20,h:52,f:'#2980b9'},
+  {t:'rect',x:325,y:128,w:20,h:52,f:'#2980b9'},
+  {t:'circle',cx:196,cy:188,r:12,f:'#222'},
+  {t:'circle',cx:236,cy:188,r:12,f:'#222'},
+  {t:'circle',cx:276,cy:188,r:12,f:'#222'},
+  {t:'circle',cx:310,cy:188,r:12,f:'#222'},
+  {t:'text',x:50,y:265,txt:'⬅ ซ้าย',sz:12,fill:'#fff'},
+  {t:'text',x:260,y:265,txt:'ขวา ➡',sz:12,fill:'#fff'},
+  {t:'text',x:160,y:265,txt:'⬆ ตรงไป',sz:12,fill:'#fff'},
+ ],
+ pins:[
+  {x:65,y:112,word:'รถตุ๊กตุ๊ก',lbl:'รถตุ๊กตุ๊ก·嘟嘟车'},
+  {x:252,y:88,word:'รถเมล์',lbl:'รถเมล์·公交车'},
+  {x:50,y:205,word:'ซ้าย',lbl:'ซ้าย·左'},
+  {x:185,y:205,word:'ตรงไป',lbl:'ตรงไป·直走'},
+  {x:305,y:205,word:'ขวา',lbl:'ขวา·右'},
+  {x:60,y:140,word:'ไป',lbl:'ไป·去'},
+  {x:310,y:140,word:'มา',lbl:'มา·来'},
+ ]},
+family:{bg:'#fff0f8',title:'ครอบครัว · 家庭',
+ sh:[
+  {t:'circle',cx:180,cy:65,r:28,f:'#fcd5a0'},
+  {t:'rect',x:162,y:93,w:36,h:58,f:'#e8a020',rx:6},
+  {t:'circle',cx:95,cy:98,r:22,f:'#fcd5a0'},
+  {t:'rect',x:79,y:120,w:32,h:50,f:'#e84393',rx:5},
+  {t:'circle',cx:265,cy:98,r:22,f:'#fcd5a0'},
+  {t:'rect',x:249,y:120,w:32,h:50,f:'#1a6b4a',rx:5},
+  {t:'circle',cx:128,cy:168,r:16,f:'#fcd5a0'},
+  {t:'rect',x:115,y:184,w:26,h:38,f:'#f39c12',rx:4},
+  {t:'circle',cx:232,cy:168,r:16,f:'#fcd5a0'},
+  {t:'rect',x:219,y:184,w:26,h:38,f:'#9b59b6',rx:4},
+  {t:'text',x:173,y:72,txt:'😊',sz:18},
+  {t:'text',x:84,y:106,txt:'😊',sz:16},
+  {t:'text',x:254,y:106,txt:'😊',sz:16},
+  {t:'rect',x:20,y:232,w:320,h:3,f:'#f8d0e8'},
+ ],
+ pins:[
+  {x:180,y:32,word:'พ่อ',lbl:'พ่อ·父亲'},
+  {x:60,y:88,word:'แม่',lbl:'แม่·母亲'},
+  {x:300,y:88,word:'พี่สาว',lbl:'พี่สาว·姐姐'},
+  {x:105,y:160,word:'น้องชาย',lbl:'น้องชาย·弟弟'},
+  {x:265,y:160,word:'น้องสาว',lbl:'น้องสาว·妹妹'},
+  {x:50,y:220,word:'ครอบครัว',lbl:'ครอบครัว·家庭'},
+  {x:295,y:220,word:'เพื่อน',lbl:'เพื่อน·朋友'},
+ ]},
+body:{bg:'#fef0ee',title:'ร่างกาย · 身体',
+ sh:[
+  {t:'circle',cx:180,cy:68,r:40,f:'#fcd5a0'},
+  {t:'rect',x:157,y:108,w:46,h:95,f:'#fcd5a0',rx:8},
+  {t:'rect',x:116,y:115,w:38,h:72,f:'#fcd5a0',rx:6},
+  {t:'rect',x:206,y:115,w:38,h:72,f:'#fcd5a0',rx:6},
+  {t:'rect',x:157,y:203,w:22,h:68,f:'#fcd5a0',rx:5},
+  {t:'rect',x:181,y:203,w:22,h:68,f:'#fcd5a0',rx:5},
+  {t:'circle',cx:167,cy:62,r:6,f:'#555'},
+  {t:'circle',cx:193,cy:62,r:6,f:'#555'},
+  {t:'ellipse',cx:180,cy:80,rx:9,ry:4,f:'#e8a090'},
+  {t:'text',x:165,y:135,txt:'♥',sz:16,fill:'#c0392b'},
+ ],
+ pins:[
+  {x:180,y:25,word:'หัว',lbl:'หัว·头'},
+  {x:225,y:55,word:'ตา',lbl:'ตา·眼睛'},
+  {x:230,y:80,word:'ปาก',lbl:'ปาก·嘴'},
+  {x:95,y:90,word:'หู',lbl:'หู·耳朵'},
+  {x:95,y:148,word:'แขน',lbl:'แขน·手臂'},
+  {x:248,y:148,word:'มือ',lbl:'มือ·手'},
+  {x:180,y:245,word:'เท้า',lbl:'เท้า·脚'},
+  {x:248,y:175,word:'ท้อง',lbl:'ท้อง·肚子'},
+ ]},
+health:{bg:'#fff0f0',title:'สุขภาพ · 健康',
+ sh:[
+  {t:'rect',x:20,y:30,w:320,h:220,f:'#fff',rx:12},
+  {t:'rect',x:158,y:20,w:44,h:24,f:'#e74c3c',rx:3},
+  {t:'rect',x:172,y:10,w:16,h:50,f:'#e74c3c',rx:3},
+  {t:'circle',cx:100,cy:130,r:44,f:'#fcd5a0'},
+  {t:'rect',x:78,y:174,w:44,h:65,f:'#3498db',rx:6},
+  {t:'text',x:97,y:138,txt:'😷',sz:28},
+  {t:'rect',x:178,y:75,w:140,h:32,f:'#fff0f0',rx:5},
+  {t:'text',x:248,y:96,txt:'🌡️ ไข้ 38°',sz:12,fill:'#e74c3c'},
+  {t:'rect',x:178,y:115,w:140,h:32,f:'#f0fff4',rx:5},
+  {t:'text',x:248,y:136,txt:'💊 ยา·药',sz:12,fill:'#27ae60'},
+  {t:'rect',x:178,y:155,w:140,h:32,f:'#fff8e1',rx:5},
+  {t:'text',x:248,y:176,txt:'🛏️ พักผ่อน',sz:12,fill:'#f39c12'},
+  {t:'rect',x:178,y:195,w:140,h:32,f:'#f3e5f5',rx:5},
+  {t:'text',x:248,y:214,txt:'😴 นอนหลับ',sz:12,fill:'#8e44ad'},
+ ],
+ pins:[
+  {x:100,y:82,word:'ป่วย',lbl:'ป่วย·生病'},
+  {x:20,y:42,word:'โรงพยาบาล',lbl:'โรงพยาบาล·医院'},
+  {x:240,y:82,word:'ไข้',lbl:'ไข้·发烧'},
+  {x:240,y:122,word:'ยา',lbl:'ยา·药'},
+  {x:240,y:162,word:'พักผ่อน',lbl:'พักผ่อน·休息'},
+  {x:240,y:202,word:'นอนหลับ',lbl:'นอนหลับ·睡觉'},
+  {x:100,y:182,word:'หมอ',lbl:'หมอ·医生'},
+ ]},
+number:{bg:'#f8f0ff',title:'ตัวเลข · 数字',
+ sh:[
+  {t:'rect',x:18,y:35,w:64,h:64,f:'#e8d5fc',rx:8},{t:'text',x:50,y:76,txt:'๑',sz:34,fill:'#8e44ad'},
+  {t:'rect',x:88,y:35,w:64,h:64,f:'#d5e8fc',rx:8},{t:'text',x:120,y:76,txt:'๒',sz:34,fill:'#2980b9'},
+  {t:'rect',x:158,y:35,w:64,h:64,f:'#d5fce8',rx:8},{t:'text',x:190,y:76,txt:'๓',sz:34,fill:'#27ae60'},
+  {t:'rect',x:228,y:35,w:64,h:64,f:'#fce8d5',rx:8},{t:'text',x:260,y:76,txt:'๔',sz:34,fill:'#e67e22'},
+  {t:'rect',x:18,y:112,w:64,h:64,f:'#fcd5d5',rx:8},{t:'text',x:50,y:152,txt:'๕',sz:34,fill:'#c0392b'},
+  {t:'rect',x:88,y:112,w:64,h:64,f:'#e8fcd5',rx:8},{t:'text',x:120,y:152,txt:'๖',sz:34,fill:'#16a085'},
+  {t:'rect',x:158,y:112,w:64,h:64,f:'#fce8fc',rx:8},{t:'text',x:190,y:152,txt:'๗',sz:34,fill:'#8e44ad'},
+  {t:'rect',x:228,y:112,w:64,h:64,f:'#fcf8d5',rx:8},{t:'text',x:260,y:152,txt:'๘',sz:34,fill:'#d4ac0d'},
+  {t:'rect',x:18,y:189,w:64,h:64,f:'#d5f0fc',rx:8},{t:'text',x:50,y:229,txt:'๙',sz:34,fill:'#1abc9c'},
+  {t:'rect',x:88,y:189,w:138,h:64,f:'#f5d5e8',rx:8},{t:'text',x:157,y:229,txt:'๑๐',sz:34,fill:'#c0392b'},
+  {t:'rect',x:232,y:189,w:92,h:64,f:'#e8e8e8',rx:8},{t:'text',x:278,y:229,txt:'ร้อย',sz:18,fill:'#555'},
+ ],
+ pins:[
+  {x:50,y:45,word:'หนึ่ง',lbl:'หนึ่ง·一'},
+  {x:120,y:45,word:'สอง',lbl:'สอง·二'},
+  {x:190,y:45,word:'สาม',lbl:'สาม·三'},
+  {x:260,y:45,word:'สี่',lbl:'สี่·四'},
+  {x:50,y:120,word:'ห้า',lbl:'ห้า·五'},
+  {x:120,y:120,word:'หก',lbl:'หก·六'},
+  {x:190,y:120,word:'เจ็ด',lbl:'เจ็ด·七'},
+  {x:260,y:120,word:'แปด',lbl:'แปด·八'},
+  {x:50,y:197,word:'เก้า',lbl:'เก้า·九'},
+  {x:157,y:197,word:'สิบ',lbl:'สิบ·十'},
+  {x:278,y:197,word:'ร้อย',lbl:'ร้อย·百'},
+ ]},
+nature:{bg:'#efffef',title:'ธรรมชาติ · 热带自然',
+ sh:[
+  {t:'rect',x:0,y:0,w:360,h:170,f:'#87ceeb'},
+  {t:'rect',x:0,y:160,w:360,h:100,f:'#3d8b37'},
+  {t:'circle',cx:55,cy:55,r:36,f:'#FFD700'},
+  {t:'rect',x:148,y:75,w:14,h:85,f:'#5D4037'},
+  {t:'ellipse',cx:155,cy:62,rx:32,ry:26,f:'#2e7d32'},
+  {t:'rect',x:218,y:90,w:12,h:70,f:'#5D4037'},
+  {t:'ellipse',cx:224,cy:80,rx:26,ry:20,f:'#388e3c'},
+  {t:'ellipse',cx:295,cy:130,rx:52,ry:36,f:'#546e7a'},
+  {t:'ellipse',cx:315,cy:110,rx:36,ry:28,f:'#607d8b'},
+  {t:'rect',x:0,y:188,w:360,h:10,f:'#1565C0'},
+  {t:'text',x:30,y:240,txt:'🌺🌸🌼',sz:24},
+  {t:'text',x:150,y:248,txt:'ชายหาด',sz:12,fill:'#fff'},
+  {t:'text',x:270,y:248,txt:'ทะเล',sz:14,fill:'#fff'},
+ ],
+ pins:[
+  {x:55,y:18,word:'แดด',lbl:'แดด·太阳'},
+  {x:155,y:45,word:'ต้นไม้',lbl:'ต้นไม้·树'},
+  {x:50,y:180,word:'ดอกไม้',lbl:'ดอกไม้·花'},
+  {x:180,y:210,word:'ชายหาด',lbl:'ชายหาด·海滩'},
+  {x:295,y:108,word:'ภูเขา',lbl:'ภูเขา·山'},
+  {x:310,y:200,word:'ทะเล',lbl:'ทะเล·海'},
+  {x:280,y:50,word:'ฝน',lbl:'ฝน·雨'},
+ ]},
+feeling:{bg:'#fffaee',title:'ความรู้สึก · 情感',
+ sh:[
+  {t:'circle',cx:75,cy:78,r:42,f:'#FFD700'},{t:'text',x:62,y:87,txt:'😊',sz:34},
+  {t:'circle',cx:180,cy:78,r:42,f:'#87ceeb'},{t:'text',x:167,y:87,txt:'😢',sz:34},
+  {t:'circle',cx:285,cy:78,r:42,f:'#ff8c69'},{t:'text',x:272,y:87,txt:'😡',sz:34},
+  {t:'circle',cx:75,cy:190,r:42,f:'#dda0dd'},{t:'text',x:62,y:199,txt:'😱',sz:34},
+  {t:'circle',cx:180,cy:190,r:42,f:'#98fb98'},{t:'text',x:167,y:199,txt:'😍',sz:34},
+  {t:'circle',cx:285,cy:190,r:42,f:'#f0e68c'},{t:'text',x:272,y:199,txt:'😴',sz:34},
+  {t:'text',x:75,y:133,txt:'ดีใจ',sz:11,fill:'#b8860b'},
+  {t:'text',x:180,y:133,txt:'เสียใจ',sz:11,fill:'#4682b4'},
+  {t:'text',x:285,y:133,txt:'โกรธ',sz:11,fill:'#8b2500'},
+  {t:'text',x:75,y:245,txt:'กลัว',sz:11,fill:'#6a0dad'},
+  {t:'text',x:180,y:245,txt:'รัก',sz:11,fill:'#006400'},
+  {t:'text',x:285,y:245,txt:'เบื่อ',sz:11,fill:'#8b6914'},
+ ],
+ pins:[
+  {x:75,y:34,word:'ดีใจ',lbl:'ดีใจ·高兴'},
+  {x:180,y:34,word:'เสียใจ',lbl:'เสียใจ·难过'},
+  {x:285,y:34,word:'โกรธ',lbl:'โกรธ·生气'},
+  {x:75,y:148,word:'กลัว',lbl:'กลัว·害怕'},
+  {x:180,y:148,word:'รัก',lbl:'รัก·爱'},
+  {x:285,y:148,word:'เบื่อ',lbl:'เบื่อ·无聊'},
+  {x:180,y:265,word:'มีความสุข',lbl:'มีความสุข·幸福'},
+ ]},
+work:{bg:'#eef4ff',title:'การทำงาน · 工作学习',
+ sh:[
+  {t:'rect',x:20,y:35,w:320,h:210,f:'#f5f8ff',rx:8},
+  {t:'rect',x:30,y:45,w:200,h:120,f:'#fff',rx:6},
+  {t:'rect',x:38,y:53,w:184,h:104,f:'#e8f0fe',rx:4},
+  {t:'text',x:80,y:108,txt:'📊 ทำงาน',sz:16},
+  {t:'rect',x:240,y:45,w:90,h:55,f:'#fff9e6',rx:6},
+  {t:'text',x:258,y:80,txt:'📚เรียน',sz:14},
+  {t:'rect',x:240,y:108,w:90,h:55,f:'#fff0f0',rx:6},
+  {t:'text',x:263,y:140,txt:'✏️เขียน',sz:13},
+  {t:'rect',x:30,y:178,w:295,h:58,f:'#fff',rx:6},
+  {t:'text',x:60,y:210,txt:'👨‍🏫ครู  👩‍🎓นักเรียน  💊หมอ',sz:13},
+ ],
+ pins:[
+  {x:130,y:58,word:'ทำงาน',lbl:'ทำงาน·工作'},
+  {x:45,y:170,word:'ภาษาไทย',lbl:'ภาษาไทย·泰语'},
+  {x:285,y:55,word:'เรียน',lbl:'เรียน·学习'},
+  {x:285,y:118,word:'หนังสือ',lbl:'หนังสือ·书'},
+  {x:80,y:195,word:'ครู',lbl:'ครู·老师'},
+  {x:188,y:195,word:'นักเรียน',lbl:'นักเรียน·学生'},
+  {x:295,y:195,word:'หมอ',lbl:'หมอ·医生'},
+ ]}
+};
+
+const cfg=cfgs[key];
+if(!cfg)return'<svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="280" fill="#eee"/></svg>';
+const wset=new Set(words.map(w=>w[0]));
+let s=`<svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">`;
+s+=`<rect width="360" height="280" fill="${cfg.bg}"/>`;
+for(const sh of cfg.sh){
+  if(sh.t==='rect')s+=`<rect x="${sh.x}" y="${sh.y}" width="${sh.w}" height="${sh.h||0}" fill="${sh.f||'#ccc'}" rx="${sh.rx||0}"/>`;
+  else if(sh.t==='circle')s+=`<circle cx="${sh.cx}" cy="${sh.cy}" r="${sh.r}" fill="${sh.f||'#ccc'}"/>`;
+  else if(sh.t==='ellipse')s+=`<ellipse cx="${sh.cx}" cy="${sh.cy}" rx="${sh.rx}" ry="${sh.ry}" fill="${sh.f||'#ccc'}"/>`;
+  else if(sh.t==='polygon')s+=`<polygon points="${sh.pts}" fill="${sh.f||'#ccc'}"/>`;
+  else if(sh.t==='path')s+=`<path d="${sh.d}" stroke="${sh.stroke||'#000'}" stroke-width="${sh.sw||1}" fill="${sh.f||'none'}"/>`;
+  else if(sh.t==='text')s+=`<text x="${sh.x}" y="${sh.y}" font-size="${sh.sz||14}" fill="${sh.fill||'#333'}" text-anchor="middle">${sh.txt}</text>`;
+}
+for(const p of cfg.pins){
+  if(!wset.has(p.word))continue;
+  const isL=learned.has(p.word);
+  const pc=isL?'#1a6b4a':'#c0392b';
+  const parts=p.lbl.split('·');
+  const thai=parts[0];const cn=parts[1]||'';
+  const anchor=p.x>220?'end':'start';
+  const lx=p.x>220?p.x-10:p.x+10;
+  const ly=p.y<40?p.y+20:p.y-12;
+  s+=`<g class="word-pin" onclick="pinTap('${p.word.replace(/'/g,"\\'")}')">`;
+  s+=`<circle cx="${p.x}" cy="${p.y}" r="7" fill="${pc}" opacity="0.9"/>`;
+  s+=`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="#fff"/>`;
+  s+=`<rect x="${anchor==='end'?lx-66:lx-2}" y="${ly-13}" width="68" height="26" fill="rgba(255,255,255,0.93)" rx="5"/>`;
+  s+=`<text x="${anchor==='end'?lx-35:lx+32}" y="${ly}" font-size="9" fill="${pc}" font-weight="bold" text-anchor="middle">${thai}</text>`;
+  s+=`<text x="${anchor==='end'?lx-35:lx+32}" y="${ly+11}" font-size="8" fill="#555" text-anchor="middle">${cn}</text>`;
+  s+=`</g>`;
+}
+s+=`<rect x="0" y="262" width="360" height="18" fill="rgba(0,0,0,0.15)"/>`;
+s+=`<text x="180" y="275" font-size="10" fill="#fff" text-anchor="middle" font-weight="600">${cfg.title}</text>`;
+s+=`</svg>`;
+return s;
+}
+
+// ══ localStorage 持久化 ══
+const STORAGE_KEY='thai_learned_v1';
+function loadLearned(){try{const r=localStorage.getItem(STORAGE_KEY);return r?new Set(JSON.parse(r)):new Set();}catch(e){return new Set();}}
+function saveLearned(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify([...learned]));}catch(e){}}
+
+const learned=loadLearned();
+let cardIdx=0,cardWords=[...WORDS];
+let quizMode='t2c',quizCur=null,qok=0,qno=0,streak=0;
+
+function markLearned(w){if(learned.has(w))return;learned.add(w);saveLearned();updateStats();}
+function updateStats(){
+  const n=learned.size;
+  document.getElementById('sl').textContent=n;
+  document.getElementById('cl').textContent=n;
+  document.getElementById('pf').style.width=(n/150*100).toFixed(1)+'%';
+  document.getElementById('cpf').style.width=(n/150*100).toFixed(1)+'%';
+  document.getElementById('qlrn').textContent=n;
+  const done=SCENES.filter(s=>s.words.every(w=>learned.has(w[0]))).length;
+  document.getElementById('ss').textContent=done+'/'+SCENES.length;
+  const area=document.getElementById('unlock-area');
+  if(n>=100)area.innerHTML=`<div class="unlock-banner"><div class="icon">🔓</div><div><h3>基础词汇解锁！</h3><p>已掌握${n}个核心词，可以挑战1000词了！</p></div></div>`;
+  else area.innerHTML='';
+  renderSceneGrid();
+}
+
+function renderSceneGrid(){
+  document.getElementById('scene-grid').innerHTML=SCENES.map(s=>{
+    const total=s.words.length;
+    const done=s.words.filter(w=>learned.has(w[0])).length;
+    const pct=Math.round(done/total*100);
+    return`<div class="scene-card" onclick="openScene('${s.key}')">
+      <div class="scene-thumb" style="background:${s.color}">${s.emoji}</div>
+      ${done===total?'<div class="scene-done">✓ 完成</div>':''}
+      <div class="scene-badge">${done}/${total}</div>
+      <div class="scene-info">
+        <div class="scene-title">${s.title}</div>
+        <div class="scene-sub">${s.sub}</div>
+        <div style="height:3px;background:#eee;border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;width:${pct}%;background:${s.accent};border-radius:2px;transition:width .3s"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openScene(key){
+  const s=SCENES.find(x=>x.key===key);if(!s)return;
+  s.words.forEach(w=>markLearned(w[0]));
+  document.getElementById('scene-list-view').style.display='none';
+  document.getElementById('scene-detail-view').classList.add('on');
+  const svg=makeSVG(s.key,s.words);
+  let html=`<div class="scene-illustration">${svg}</div>`;
+  html+=`<div class="scene-words"><h3>本场景词汇 · ${s.words.length}个</h3>`;
+  s.words.forEach((w,i)=>{
+    html+=`<div class="word-row" onclick="speakThai('${w[0].replace(/'/g,"\\'")}')">
+      <span class="wr-num">${i+1}</span>
+      <span class="wr-thai">${w[0]}</span>
+      <span class="wr-ph">${w[1]}</span>
+      <span class="wr-cn">${w[2]}</span>
+      <svg class="wr-play" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('scene-content').innerHTML=html;
+}
+
+function backToScenes(){
+  document.getElementById('scene-list-view').style.display='';
+  document.getElementById('scene-detail-view').classList.remove('on');
+  renderSceneGrid();
+}
+function pinTap(w){speakThai(w);}
+
+function upCard(){
+  const w=cardWords[cardIdx];
+  const s=SCENES.find(sc=>sc.key===w[3]);
+  document.getElementById('fc-scene').textContent=s?s.emoji:'📚';
+  document.getElementById('fc-thai').textContent=w[0];
+  document.getElementById('fc-ph').textContent=w[1];
+  document.getElementById('fc-cn').textContent=w[2];
+  document.getElementById('fc-tag').textContent=s?s.title:w[3];
+  markLearned(w[0]);
+}
+function nextCard(){cardIdx=(cardIdx+1)%cardWords.length;streak++;document.getElementById('cstreak').textContent=streak;upCard();}
+function prevCard(){cardIdx=(cardIdx-1+cardWords.length)%cardWords.length;upCard();}
+function randCard(){cardIdx=Math.floor(Math.random()*cardWords.length);upCard();}
+function spCard(){speakThai(cardWords[cardIdx][0],'fc-anim');}
+
+function buildFilter(){
+  const sel=document.getElementById('wcat');
+  sel.innerHTML='<option value="">全部词汇 ('+WORDS.length+'词)</option>';
+  SCENES.forEach(s=>sel.innerHTML+=`<option value="${s.key}">${s.emoji} ${s.title}</option>`);
+}
+function renderWordList(){
+  const cat=document.getElementById('wcat').value;
+  const list=cat?WORDS.filter(w=>w[3]===cat):WORDS;
+  document.getElementById('wbadge').textContent=list.length+'个词';
+  document.getElementById('wl').innerHTML=list.map((w,i)=>{
+    const dot=learned.has(w[0])?'<span class="learned-dot"></span>':'';
+    return`<div class="word-row" onclick="speakThai('${w[0].replace(/'/g,"\\'")}')">
+      <span class="wr-num">${i+1}</span>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:4px">
+          <span class="wr-thai" style="font-size:14px">${w[0]}</span>${dot}
+        </div>
+        <div class="wr-ph">${w[1]}</div>
+      </div>
+      <span class="wr-cn" style="font-size:13px">${w[2]}</span>
+      <svg class="wr-play" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+    </div>`;
+  }).join('');
+}
+
+function refreshQuiz(){
+  const lw=[...learned].map(k=>WORDS.find(w=>w[0]===k)).filter(Boolean);
+  document.getElementById('qlrn').textContent=lw.length;
+  const empty=document.getElementById('quiz-empty');
+  const body=document.getElementById('quiz-body');
+  if(lw.length<4){
+    empty.classList.remove('hid');body.classList.add('hid');
+    empty.querySelector('span').textContent=lw.length===0?'先去「场景」逛一逛，词汇会自动记录！':`还需再学 ${4-lw.length} 个词。`;
+  }else{empty.classList.add('hid');body.classList.remove('hid');nextQuiz(lw);}
+}
+function nextQuiz(lw){
+  if(!lw)lw=[...learned].map(k=>WORDS.find(w=>w[0]===k)).filter(Boolean);
+  if(lw.length<4){refreshQuiz();return;}
+  quizCur=lw[Math.floor(Math.random()*lw.length)];
+  const s=SCENES.find(sc=>sc.key===quizCur[3]);
+  document.getElementById('qq').textContent=quizMode==='t2c'?quizCur[1]:quizCur[2];
+  document.getElementById('qs').textContent=(quizMode==='t2c'?(s?s.emoji+' ':'')+'选中文意思':'选拼音')+' · 共'+lw.length+'词';
+  const pool=lw.filter(w=>w!==quizCur);
+  const wrong=[];
+  while(wrong.length<3&&pool.length>wrong.length){const r=pool[Math.floor(Math.random()*pool.length)];if(!wrong.includes(r))wrong.push(r);}
+  document.getElementById('qo').innerHTML=[quizCur,...wrong].sort(()=>Math.random()-.5).map(w=>
+    `<button class="qb" onclick="chkQ(this,'${w[0].replace(/'/g,"\\'")}')">
+      ${quizMode==='t2c'?w[2]:w[1]}
+    </button>`).join('');
+  document.getElementById('qh').textContent='只考已学过的'+lw.length+'个词';
+}
+function chkQ(btn,thai){
+  const ok=thai===quizCur[0];
+  document.querySelectorAll('.qb').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'ok':'no');
+  if(!ok)document.querySelectorAll('.qb').forEach(b=>{
+    const t=b.textContent.trim();
+    if((quizMode==='t2c'&&t===quizCur[2])||(quizMode==='c2t'&&t===quizCur[1]))b.classList.add('ok');
+  });
+  if(ok){qok++;streak++;}else{qno++;streak=0;}
+  document.getElementById('qok').textContent=qok;
+  document.getElementById('qno').textContent=qno;
+  document.getElementById('cstreak').textContent=streak;
+  document.getElementById('qh').textContent=ok?'✓ 正确！':'✗ 错了，绿色为正确答案';
+  setTimeout(()=>nextQuiz(),1800);
+}
+function setQ(m){
+  quizMode=m;
+  document.getElementById('qt').classList.toggle('on',m==='t2c');
+  document.getElementById('qc').classList.toggle('on',m==='c2t');
+  refreshQuiz();
+}
+function spQuiz(){if(quizCur)speakThai(quizCur[0]);}
+
+function speakThai(text,animId){
+  if(!window.speechSynthesis)return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='th-TH';u.rate=0.82;
+  const v=speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('th'));
+  if(v)u.voice=v;
+  const an=animId?document.getElementById(animId):null;
+  if(an){an.classList.remove('hid');u.onend=u.onerror=()=>an.classList.add('hid');}
+  const h=document.getElementById('card-hint');
+  if(h)h.textContent=v?'🔊 '+v.name:'⚠️ 请在设置中安装泰语TTS语音包';
+  speechSynthesis.speak(u);
+}
+
+function resetProgress(){
+  if(!confirm('确定要清空所有学习记录吗？'))return;
+  learned.clear();
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  updateStats();refreshQuiz();
+  cardIdx=0;upCard();
+  streak=0;qok=0;qno=0;
+  document.getElementById('cstreak').textContent=0;
+  document.getElementById('qok').textContent=0;
+  document.getElementById('qno').textContent=0;
+}
 
 function go(t){
   document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
   document.getElementById('p-'+t).classList.add('on');
   document.getElementById('t-'+t).classList.add('on');
-  if(t==='words')renderWL();
-  if(t==='sents')renderSL();
+  if(t==='words')renderWordList();
   if(t==='quiz')refreshQuiz();
 }
 
-function markLearned(idx){
-  if(idx<0||idx>=W.length)return;
-  learned.add(idx);
-  document.getElementById('sl').textContent=learned.size;
-  document.getElementById('pf').style.width=(learned.size/W.length*100).toFixed(1)+'%';
-  document.getElementById('qlrn').textContent=learned.size;
-}
-
-function setM(m){
-  lm=m;
-  ['w','s'].forEach(x=>document.getElementById('m'+x).classList.toggle('on',m===x));
-  document.getElementById('vw').classList.toggle('hid',m!=='w');
-  document.getElementById('vs').classList.toggle('hid',m!=='s');
-}
-
-function upW(){
-  const w=fw[wi]||W[0];
-  const gi=W.indexOf(w);
-  document.getElementById('ctw').textContent=w[0];
-  document.getElementById('cph').textContent=w[1];
-  document.getElementById('cmn').textContent=w[2];
-  document.getElementById('ctg').textContent=w[3];
-  markLearned(gi);
-}
-function upS(){
-  const s=fs[si];
-  document.getElementById('stw').textContent=s[0];
-  document.getElementById('sph').textContent=s[1];
-  document.getElementById('scn').textContent=s[2];
-  document.getElementById('ssc').textContent='场景：'+s[3];
-}
-
-function nW(){wi=(wi+1)%fw.length;streak++;document.getElementById('ss').textContent=streak;upW();}
-function pW(){wi=(wi-1+fw.length)%fw.length;upW();}
-function rW(){wi=Math.floor(Math.random()*fw.length);upW();}
-function nS(){si=(si+1)%fs.length;upS();}
-function pS(){si=(si-1+fs.length)%fs.length;upS();}
-function rS(){si=Math.floor(Math.random()*fs.length);upS();}
-
-function speak(text,animId){
-  if(!window.speechSynthesis)return;
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang='th-TH';u.rate=0.8;
-  const tv=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.startsWith('th'));
-  if(tv)u.voice=tv;
-  const an=animId?document.getElementById(animId):null;
-  if(an){an.classList.remove('hid');u.onend=u.onerror=()=>an.classList.add('hid');}
-  const h=document.getElementById('th');
-  if(h)h.textContent=tv?'🔊 '+tv.name:'⚠️ 未找到泰语TTS，请在设置→辅助功能→语音中安装泰语';
-  speechSynthesis.speak(u);
-}
-function spW(){speak((fw[wi]||W[0])[0],'an1');}
-function spS(){speak(fs[si][0],'an2');}
-
-function buildCatFilters(){
-  document.getElementById('frow').innerHTML=
-    '<div class="fc on" onclick="filW(\'\')" data-c="">全部</div>'+
-    CATS.map(c=>`<div class="fc" onclick="filW('${c}')" data-c="${c}">${c}</div>`).join('');
-}
-function filW(cat){
-  document.querySelectorAll('.fc').forEach(c=>c.classList.toggle('on',c.dataset.c===cat));
-  fw=cat?W.filter(w=>w[3]===cat):[...W];
-  wi=0;
-  document.getElementById('wlb').textContent=fw.length+'个词';
-  renderWL();upW();
-}
-function renderWL(){
-  document.getElementById('wl').innerHTML=fw.map((w,i)=>{
-    const gi=W.indexOf(w);
-    const dot=learned.has(gi)?'<span class="ldot"></span>':'';
-    return `<div class="wi" onclick="playW(${gi})">
-      <span class="wn">${i+1}</span>
-      <div style="flex:1;min-width:0">
-        <div style="display:flex;align-items:center;gap:4px">
-          <span class="wt">${w[0]}</span>${dot}
-        </div>
-        <div class="wp">${w[1]}</div>
-        <div class="wc">${w[2]}</div>
-      </div>
-      <svg class="wpl" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-    </div>`;}).join('');
-}
-function playW(idx){
-  speak(W[idx][0],null);
-  markLearned(idx);
-  wi=fw.indexOf(W[idx]);if(wi<0)wi=0;
-  upW();setM('w');go('learn');
-}
-
-function filS(){
-  const v=document.getElementById('sf').value;
-  fs=v?S.filter(s=>s[3]===v):[...S];
-  document.getElementById('sc2').textContent=fs.length+'句';
-  renderSL();
-}
-function renderSL(){
-  document.getElementById('sl2').innerHTML=fs.map((s,i)=>
-    `<div class="wi" onclick="playS(${S.indexOf(s)})">
-      <span class="wn">${i+1}</span>
-      <div style="flex:1;min-width:0">
-        <div class="wt" style="color:#1a6b4a">${s[0]}</div>
-        <div class="wp">${s[1]}</div>
-        <div class="wc">${s[2]}</div>
-      </div>
-      <svg class="wpl" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-    </div>`).join('');
-}
-function playS(idx){
-  si=fs.indexOf(S[idx]);if(si<0){fs=[...S];si=idx;}
-  upS();setM('s');go('learn');
-  setTimeout(()=>speak(S[idx][0],'an2'),300);
-}
-
-function refreshQuiz(){
-  const lw=[...learned].map(i=>W[i]);
-  document.getElementById('qlrn').textContent=lw.length;
-  const empty=document.getElementById('quiz-empty');
-  const body=document.getElementById('quiz-body');
-  if(lw.length<4){
-    empty.classList.remove('hid');body.classList.add('hid');
-    empty.querySelector('span').textContent=
-      lw.length===0?'先去「学习」模式翻几张单词卡，回来就可以测试了！'
-      :`还需再学 ${4-lw.length} 个词才能开始测试。`;
-  } else {
-    empty.classList.add('hid');body.classList.remove('hid');
-    nQ();
-  }
-}
-function setQ(m){
-  qm=m;
-  document.getElementById('qp').classList.toggle('on',m==='p2c');
-  document.getElementById('qc').classList.toggle('on',m==='c2p');
-  refreshQuiz();
-}
-function nQ(){
-  const lw=[...learned].map(i=>W[i]);
-  if(lw.length<4){refreshQuiz();return;}
-  qcur=lw[Math.floor(Math.random()*lw.length)];
-  document.getElementById('qq').textContent=qm==='p2c'?qcur[1]:qcur[2];
-  document.getElementById('qs').textContent=(qm==='p2c'?qcur[0]+' — 选中文':'选拼音')+' · 共'+lw.length+'词';
-  const pool=lw.filter(w=>w!==qcur);
-  const wrong=[];
-  while(wrong.length<3&&pool.length>wrong.length){
-    const r=pool[Math.floor(Math.random()*pool.length)];
-    if(!wrong.includes(r))wrong.push(r);
-  }
-  const opts=[qcur,...wrong].sort(()=>Math.random()-.5);
-  document.getElementById('qo').innerHTML=opts.map(w=>
-    `<button class="qb" onclick="chkQ(this,${W.indexOf(w)})">${qm==='p2c'?w[2]:w[1]}</button>`
-  ).join('');
-  document.getElementById('qh').textContent='只测试你已学过的词';
-}
-function chkQ(btn,idx){
-  const ok=W[idx]===qcur;
-  document.querySelectorAll('.qb').forEach(b=>b.disabled=true);
-  btn.classList.add(ok?'ok':'no');
-  if(!ok){
-    document.querySelectorAll('.qb').forEach(b=>{
-      const t=b.textContent.trim();
-      if((qm==='p2c'&&t===qcur[2])||(qm==='c2p'&&t===qcur[1]))b.classList.add('ok');
-    });
-  }
-  if(ok){qok++;streak++;}else{qno++;streak=0;}
-  document.getElementById('qok').textContent=qok;
-  document.getElementById('qno').textContent=qno;
-  document.getElementById('ss').textContent=streak;
-  document.getElementById('qh').textContent=ok?'✓ 正确！':'✗ 错了，正确答案已标绿';
-  setTimeout(nQ,1800);
-}
-function spQ(){if(qcur)speak(qcur[0],null);}
-
-// 预加载TTS声音
-if(window.speechSynthesis){
-  speechSynthesis.getVoices();
-  speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
-}
-
-// 防止双击缩放
+if(window.speechSynthesis){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
 document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
-
-buildCatFilters();upW();upS();renderWL();renderSL();refreshQuiz();
+buildFilter();renderSceneGrid();upCard();renderWordList();refreshQuiz();
+updateStats();
 </script>
-<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js")}</script>
+<script>if("serviceWorker"in navigator){navigator.serviceWorker.register("./sw.js")}</script>
 </body>
 </html>
