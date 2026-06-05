@@ -1,0 +1,22 @@
+{
+  "name": "泰语学习 ภาษาไทย",
+  "short_name": "泰语学习",
+  "description": "AAA音标系统泰语学习工具，1000词汇与150句练习",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a6b4a",
+  "theme_color": "#1a6b4a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
