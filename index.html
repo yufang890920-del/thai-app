@@ -443,42 +443,30 @@ function nS(){si=(si+1)%fs.length;upS();}
 function pS(){si=(si-1+fs.length)%fs.length;upS();}
 function rS(){si=Math.floor(Math.random()*fs.length);upS();}
 
-// ElevenLabs TTS — 真人泰语发音
-const EL_KEY='sk_e366ba113ec5cb60762a929b569b8104eaa4e3df27e82ff5';
-const EL_VOICE='OYTbf65OHHFELVut7v2H'; // Lily — 支持泰语的自然女声
+const TTS_PROXY='https://tts-proxy-chi.vercel.app/api/tts';
 const audioCache={};
 let currentAudio=null;
 
 async function speak(text,animId){
-  // 停止当前播放
   if(currentAudio){currentAudio.pause();currentAudio=null;}
   const an=animId?document.getElementById(animId):null;
   const h=document.getElementById('th');
-
-  // 缓存命中直接播放
+  if(an)an.classList.remove('hid');
+  if(h)h.textContent='⏳ 加载发音...';
   if(audioCache[text]){
-    if(an)an.classList.remove('hid');
     currentAudio=new Audio(audioCache[text]);
     currentAudio.onended=currentAudio.onerror=()=>{if(an)an.classList.add('hid');};
     currentAudio.play();
     if(h)h.textContent='🔊 ElevenLabs 真人发音';
     return;
   }
-
-  if(h)h.textContent='⏳ 加载发音...';
-  if(an)an.classList.remove('hid');
-
   try{
-    const res=await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${EL_VOICE}`,{
+    const res=await fetch(TTS_PROXY,{
       method:'POST',
-      headers:{'xi-api-key':EL_KEY,'Content-Type':'application/json'},
-      body:JSON.stringify({
-        text:text,
-        model_id:'eleven_turbo_v2_5',
-        voice_settings:{stability:0.5,similarity_boost:0.8,style:0.3,use_speaker_boost:true}
-      })
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text})
     });
-    if(!res.ok)throw new Error('API error '+res.status);
+    if(!res.ok)throw new Error('status '+res.status);
     const blob=await res.blob();
     const url=URL.createObjectURL(blob);
     audioCache[text]=url;
@@ -488,11 +476,10 @@ async function speak(text,animId){
     if(h)h.textContent='🔊 ElevenLabs 真人发音';
   }catch(e){
     if(an)an.classList.add('hid');
-    if(h)h.textContent='⚠️ 发音加载失败，使用备用TTS';
-    // 降级回系统TTS
+    if(h)h.textContent='⚠️ 降级备用TTS';
     const u=new SpeechSynthesisUtterance(text);
     u.lang='th-TH';u.rate=0.8;
-    const tv=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.startsWith('th'));
+    const tv=speechSynthesis.getVoices&&speechSynthesis.getVoices().find(v=>v.lang&&v.lang.startsWith('th'));
     if(tv)u.voice=tv;
     speechSynthesis.speak(u);
   }
@@ -616,6 +603,12 @@ function chkQ(btn,idx){
   setTimeout(nQ,1800);
 }
 function spQ(){if(qcur)speak(qcur[0],null);}
+
+// 预加载TTS声音
+if(window.speechSynthesis){
+  speechSynthesis.getVoices();
+  speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
+}
 
 // 防止双击缩放
 document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
