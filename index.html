@@ -95,6 +95,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-se
 .unlock-banner p{font-size:12px;opacity:.9}
 select{width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid #e0e0e0;font-size:13px;background:#fff;color:#333;margin-bottom:10px;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
 .wl{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.sent-card{background:#fff;border-radius:14px;padding:14px 14px 12px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);cursor:pointer;position:relative}
+.sent-card:active{opacity:.85}
+.sent-thai{font-size:17px;font-weight:700;color:#1a6b4a;margin-bottom:5px;line-height:1.5}
+.sent-ph{font-size:12px;color:#aaa;margin-bottom:5px;line-height:1.5;letter-spacing:.3px}
+.sent-cn{font-size:14px;color:#333;font-weight:500;margin-bottom:6px}
+.sent-footer{display:flex;align-items:center;justify-content:space-between}
+.sent-scene{font-size:11px;background:#e8f5ef;color:#1a6b4a;padding:2px 8px;border-radius:10px}
+.sent-play{color:#1a6b4a}
+.sent-anim{display:flex;align-items:center;gap:3px;height:18px}
+.sent-anim .ab{animation:pp .8s ease-in-out infinite}
 .word-pin{cursor:pointer}
 </style>
 </head>
@@ -113,6 +123,9 @@ select{width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid #e0e0e
   </div>
   <div class="tab" onclick="go('words')" id="t-words">
     <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>词库
+  </div>
+  <div class="tab" onclick="go('sents')" id="t-sents">
+    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>句子
   </div>
   <div class="tab" onclick="go('quiz')" id="t-quiz">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>测试
@@ -180,6 +193,15 @@ select{width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid #e0e0e
   </select>
   <div class="badge" id="wbadge">150个词</div>
   <div class="wl" id="wl"></div>
+</div>
+
+<!-- 句子页 -->
+<div class="pg" id="p-sents">
+  <select id="scat" onchange="renderSents()">
+    <option value="">全部场景句子</option>
+  </select>
+  <div class="badge" id="sbadge">120句</div>
+  <div id="sent-list"></div>
 </div>
 
 <!-- 测试页 -->
@@ -938,6 +960,143 @@ function resetProgress(){
   document.getElementById('qno').textContent=0;
 }
 
+// ══ 句子数据 [泰文, 拼音, 中文, 场景key] ══
+const SENTS=[
+// 打招呼
+['สวัสดีครับ คุณสบายดีไหม','sa-wàt-dii khráp, khun sa-baai-dii mǎi','你好，你还好吗？','greet'],
+['ผมสบายดีครับ ขอบคุณมาก','phǒm sa-baai-dii khráp, khɔ̂ɔp-khun mâak','我很好，非常感谢。','greet'],
+['ยินดีที่ได้รู้จักครับ','yin-dii thîi dâi rúu-càk khráp','很高兴认识你。','greet'],
+['ขอโทษครับ คุณชื่ออะไร','khɔ̌ɔ-thôot khráp, khun chɯ̂ɯ a-rai','对不起，你叫什么名字？','greet'],
+['ใช่ครับ ผมเป็นคนจีน','châi khráp, phǒm pen khon-ciin','是的，我是中国人。','greet'],
+['ไม่เป็นไรค่ะ ไม่ต้องกังวล','mâi-pen-rai khâ, mâi-tɔ̂ŋ kaŋ-won','没关系，不用担心。','greet'],
+['ลาก่อนนะครับ แล้วเจอกัน','laa-kɔ̀ɔn ná khráp, lɛ́ɛw-cəə-kan','再见，回头见。','greet'],
+['คุณพูดภาษาไทยได้ไหมครับ','khun phûut phaa-sǎa-thai dâi mǎi khráp','你会说泰语吗？','greet'],
+['ผมพูดภาษาไทยได้นิดหน่อย','phǒm phûut phaa-sǎa-thai dâi nít-nɔ̀oi','我会说一点泰语。','greet'],
+['ขอบคุณมากครับ คุณใจดีมาก','khɔ̂ɔp-khun mâak khráp, khun cai-dii mâak','非常感谢，你真好心。','greet'],
+// 街边小吃
+['ขอผัดไทยหนึ่งจานครับ','khɔ̌ɔ phàt-thai nɯŋ-caan khráp','请给我一份炒泰面。','food'],
+['อาหารนี้เผ็ดไหมครับ','aa-hǎan níi phèt mǎi khráp','这道菜辣吗？','food'],
+['อร่อยมากเลย ผมชอบมาก','a-rɔ̀i mâak loei, phǒm chɔ̂ɔp mâak','太好吃了，我非常喜欢。','food'],
+['เท่าไหร่ครับ ข้าวผัดกุ้ง','thâo-rài khráp, khâo-phàt kûŋ','虾炒饭多少钱？','food'],
+['ขอน้ำเปล่าหนึ่งขวดครับ','khɔ̌ɔ nám-plào nɯŋ-khùat khráp','请给我一瓶矿泉水。','food'],
+['เก็บตังค์ด้วยนะครับ','kèp-taŋ dûai ná khráp','请结账。','food'],
+['ไม่เอาผักชีนะครับ','mâi-ao phàk-chii ná khráp','不要香菜。','food'],
+['ก๋วยเตี๋ยวที่นี่อร่อยมาก','kǔai-tǐaw thîi-níi a-rɔ̀i mâak','这里的米粉非常好吃。','food'],
+['ขอกาแฟร้อนหนึ่งแก้วครับ','khɔ̌ɔ kaa-fɛɛ-rɔ́ɔn nɯŋ-kɛ̂ɛw khráp','请给我一杯热咖啡。','food'],
+['ต้มยำกุ้งที่นี่อร่อยที่สุด','tôm-yam-kûŋ thîi-níi a-rɔ̀i thîi-sùt','这里的冬阴功虾是最好吃的。','food'],
+// 寺庙
+['วัดนี้สวยและศักดิ์สิทธิ์มาก','wát níi sǔai lɛ́ sàk-sìt mâak','这座寺庙既漂亮又神圣。','temple'],
+['ผมอยากทำบุญที่วัด','phǒm yàak tham-bun thîi wát','我想在寺庙做功德。','temple'],
+['พระที่วัดนี้ใจดีมาก','phrá thîi wát níi cai-dii mâak','这座寺庙的僧侣很好心。','temple'],
+['สงกรานต์เป็นเทศกาลสำคัญของไทย','sǒŋ-kraan pen thêet-sa-kaan sǎm-khan khɔ̌ɔŋ thai','宋干节是泰国重要的节日。','temple'],
+['กรุงเทพมีวัดสวยมากมาย','kruŋ-thêep mii wát sǔai mâak-maai','曼谷有很多漂亮的寺庙。','temple'],
+['ไหว้พระที่วัดทุกเช้า','wâi phrá thîi wát thúk-cháo','每天早上在寺庙礼拜。','temple'],
+['ลอยกระทงเป็นประเพณีไทย','lɔɔi-kra-thoŋ pen pra-phee-nii thai','水灯节是泰国的传统习俗。','temple'],
+['พระพุทธรูปที่นี่สวยงามมาก','phrá-phút-tha-rûup thîi-níi sǔai-ŋaam mâak','这里的佛像非常美丽。','temple'],
+// 市场
+['ของชิ้นนี้ราคาเท่าไหร่ครับ','khɔ̌ɔŋ chín-níi raa-khaa thâo-rài khráp','这件东西多少钱？','market'],
+['แพงไปหน่อย ลดได้ไหมครับ','phɛɛŋ pai nɔ̀oi, lót dâi mǎi khráp','有点贵，能打折吗？','market'],
+['ถูกมาก ผมเอาสองชิ้น','thùuk mâak, phǒm ao sɔ̌ɔŋ-chín','很便宜，我要两件。','market'],
+['ตลาดนัดจตุจักรใหญ่มาก','ta-làat-nát ca-tu-càk yài mâak','恰图恰周末市场很大。','market'],
+['ไม่เอาครับ แพงเกินไป','mâi-ao khráp, phɛɛŋ kəən-pai','不要了，太贵了。','market'],
+['ของที่นี่สวยและถูกมาก','khɔ̌ɔŋ thîi-níi sǔai lɛ́ thùuk mâak','这里的东西又漂亮又便宜。','market'],
+['ผมอยากซื้อของฝากกลับบ้าน','phǒm yàak sɯ́ɯ khɔ̌ɔŋ-fàak klàp-bâan','我想买伴手礼带回家。','market'],
+// 交通
+['ไปวัดพระแก้วยังไงครับ','pai wát-phrá-kɛ̂ɛw yaŋ-ŋai khráp','怎么去玉佛寺？','transport'],
+['รถตุ๊กตุ๊กไปสยามเท่าไหร่','rót-túk-túk pai sa-yǎam thâo-rài','嘟嘟车去暹罗多少钱？','transport'],
+['ขึ้นรถไฟฟ้าที่สถานีไหนครับ','khɯ̂n rót-fai-fáa thîi sa-thǎa-nii nǎi khráp','在哪个站坐轻轨？','transport'],
+['เลี้ยวซ้ายแล้วตรงไปเลย','líaw-sáai lɛ́ɛw troŋ-pai loei','左转然后直走。','transport'],
+['ที่นี่ห่างจากสนามบินไกลไหม','thîi-níi hàaŋ càak sa-nǎam-bin klai mǎi','这里离机场远吗？','transport'],
+['แท็กซี่มาตามมิเตอร์นะครับ','thɛ́k-sîi maa taam mí-tə̂ə ná khráp','出租车按表计费。','transport'],
+['รถเมล์สาย 15 ผ่านที่นี่ไหม','rót-mee sǎai 15 phàan thîi-níi mǎi','15路公交车经过这里吗？','transport'],
+// 家庭
+['พ่อแม่ผมอยู่ที่เมืองจีน','phɔ̂ɔ-mɛ̂ɛ phǒm yùu thîi mɯɯŋ-ciin','我的父母住在中国。','family'],
+['ผมมีพี่สาวหนึ่งคนและน้องชายหนึ่งคน','phǒm mii phîi-sǎao nɯŋ-khon lɛ́ nɔ́ɔŋ-chaai nɯŋ-khon','我有一个姐姐和一个弟弟。','family'],
+['ครอบครัวผมอยู่ด้วยกันอย่างมีความสุข','khrɔ̂ɔp-khrua phǒm yùu dûai-kan yàaŋ mii-khwaam-sùk','我的家人幸福地住在一起。','family'],
+['เพื่อนผมชื่อสมชาย','phɯ̂an phǒm chɯ̂ɯ sǒm-chaai','我朋友叫颂猜。','family'],
+['แฟนผมเป็นคนไทย','fɛɛn phǒm pen khon-thai','我的恋人是泰国人。','family'],
+['ลูกสาวผมอายุห้าขวบ','lûuk-sǎao phǒm aa-yú hâa-khùap','我女儿五岁。','family'],
+// 身体
+['ผมปวดหัวมากเลย','phǒm pùat-hǔa mâak loei','我头很痛。','body'],
+['ตาผมไม่ค่อยดี ต้องใส่แว่น','taa phǒm mâi-khɔ̂i-dii, tɔ̂ŋ sài wɛ̂ɛn','我眼睛不太好，需要戴眼镜。','body'],
+['มือและเท้าของเขาใหญ่มาก','mɯɯ lɛ́ tháo khɔ̌ɔŋ khǎo yài mâak','他的手和脚很大。','body'],
+['ท้องของผมหิวมากแล้ว','thɔ́ɔŋ khɔ̌ɔŋ phǒm hǐw mâak lɛ́ɛw','我肚子很饿了。','body'],
+['แขนของเธอเจ็บหลังจากออกกำลัง','khɛ̌ɛn khɔ̌ɔŋ thəə cèp lǎŋ-càak ɔ̀ɔk-kam-laŋ','她运动后手臂疼。','body'],
+// 健康
+['ผมไม่สบาย อยากไปหาหมอ','phǒm mâi-sa-baai, yàak pai hǎa mɔ̌ɔ','我不舒服，想去看医生。','health'],
+['ผมเป็นไข้และปวดหัว','phǒm pen-khâi lɛ́ pùat-hǔa','我发烧又头痛。','health'],
+['โรงพยาบาลอยู่ที่ไหนครับ','rooŋ-pha-yaa-baan yùu thîi-nǎi khráp','医院在哪里？','health'],
+['หมอบอกให้กินยาและพักผ่อน','mɔ̌ɔ bɔ̀ɔk hâi kin-yaa lɛ́ phák-phɔ̀ɔn','医生说要吃药休息。','health'],
+['ผมเป็นหวัดมาสองวันแล้ว','phǒm pen-wàt maa sɔ̌ɔŋ-wan lɛ́ɛw','我感冒两天了。','health'],
+['ดีขึ้นเยอะหลังจากนอนหลับพักผ่อน','dii-khɯ̂n yə̂ lǎŋ-càak nɔɔn-làp phák-phɔ̀ɔn','好好睡一觉休息后好多了。','health'],
+['ยานี้กินวันละสามครั้ง','yaa níi kin wan-lá sǎam-khráŋ','这药一天吃三次。','health'],
+// 数字时间
+['วันนี้วันที่เท่าไหร่ครับ','wan-níi wan-thîi thâo-rài khráp','今天几号？','number'],
+['ผมจองโรงแรมสามคืน','phǒm cɔɔŋ rooŋ-rɛɛm sǎam-khɯɯn','我订了三晚酒店。','number'],
+['ราคาทั้งหมดห้าร้อยบาท','raa-khaa tháŋ-mòt hâa-rɔ́ɔi bàat','总价五百铢。','number'],
+['พรุ่งนี้ผมมีนัดเวลาเก้าโมงเช้า','phrûŋ-níi phǒm mii nát wee-laa kâo-mooŋ-cháo','明天我九点有约。','number'],
+['เมื่อวานผมไปตลาด','mɯ̂a-waan phǒm pai ta-làat','昨天我去了市场。','number'],
+['ผมอยู่เมืองไทยมาสิบวันแล้ว','phǒm yùu mɯɯŋ-thai maa sìp-wan lɛ́ɛw','我来泰国已经十天了。','number'],
+// 自然
+['ทะเลที่ภูเก็ตสวยมาก','tha-lee thîi phuu-kèt sǔai mâak','普吉岛的海很漂亮。','nature'],
+['วันนี้แดดร้อนมากเลย','wan-níi dɛ̀ɛt rɔ́ɔn mâak loei','今天太阳很猛，很热。','nature'],
+['ดอกไม้ที่สวนสวยงามมาก','dɔ̀ɔk-máai thîi sǔan sǔai-ŋaam mâak','公园里的花非常美丽。','nature'],
+['ฝนตกทุกวันในหน้าฝน','fǒn tòk thúk-wan nai nâa-fǒn','雨季每天都下雨。','nature'],
+['ภูเขาทางเหนือของไทยสวยมาก','phuu-khao thaaŋ-nɯ̌a khɔ̌ɔŋ thai sǔai mâak','泰国北部的山很漂亮。','nature'],
+['ชายหาดที่นี่สะอาดและสวย','chaai-hàat thîi-níi sa-àat lɛ́ sǔai','这里的海滩干净又漂亮。','nature'],
+// 情感
+['ผมดีใจมากที่ได้มาเมืองไทย','phǒm dii-cai mâak thîi dâi maa mɯɯŋ-thai','我很高兴能来泰国。','feeling'],
+['ผมชอบอาหารไทยมากเลย','phǒm chɔ̂ɔp aa-hǎan-thai mâak loei','我非常喜欢泰国食物。','feeling'],
+['ผมรักเมืองไทยมากครับ','phǒm rák mɯɯŋ-thai mâak khráp','我非常爱泰国。','feeling'],
+['ผมตื่นเต้นมากที่ได้เรียนภาษาไทย','phǒm tɯ̀ɯn-tên mâak thîi dâi rian phaa-sǎa-thai','我非常兴奋能学泰语。','feeling'],
+['ผมเหนื่อยแต่มีความสุขมาก','phǒm nɯ̀ai tɛ̀ɛ mii-khwaam-sùk mâak','我累但是很幸福。','feeling'],
+['วันนี้ผมเสียใจเพราะฝนตก','wan-níi phǒm sǐa-cai phrɔ́ fǒn tòk','今天我很难过因为下雨了。','feeling'],
+// 工作学习
+['ผมกำลังเรียนภาษาไทยอยู่','phǒm kam-laŋ rian phaa-sǎa-thai yùu','我正在学泰语。','work'],
+['ภาษาไทยยากแต่สนุกมาก','phaa-sǎa-thai yâak tɛ̀ɛ sa-nùk mâak','泰语难但很有趣。','work'],
+['ครูของผมสอนดีมาก','khruu khɔ̌ɔŋ phǒm sɔ̌ɔn dii mâak','我的老师教得很好。','work'],
+['ผมไม่เข้าใจ ช่วยพูดช้าๆได้ไหม','phǒm mâi-khâo-cai, chûai phûut cháa-cháa dâi mǎi','我不明白，能说慢一点吗？','work'],
+['นักเรียนในชั้นเรียนมาจากหลายประเทศ','nák-rian nai chán-rian maa càak lǎai pra-thêet','班上的学生来自很多国家。','work'],
+['ผมทำงานที่บริษัทในกรุงเทพ','phǒm tham-ŋaan thîi bɔɔ-ri-sàt nai kruŋ-thêep','我在曼谷的公司工作。','work'],
+['หนังสือภาษาไทยเล่มนี้มีประโยชน์มาก','nǎŋ-sɯɯ phaa-sǎa-thai lêm-níi mii pra-yòot mâak','这本泰语书非常有用。','work'],
+];
+
+function buildSentFilter(){
+  const sel=document.getElementById('scat');
+  sel.innerHTML='<option value="">全部场景 ('+SENTS.length+'句)</option>';
+  SCENES.forEach(s=>sel.innerHTML+=`<option value="${s.key}">${s.emoji} ${s.title}</option>`);
+}
+
+let playingSentIdx=-1;
+function renderSents(){
+  const cat=document.getElementById('scat').value;
+  const list=cat?SENTS.filter(s=>s[3]===cat):SENTS;
+  document.getElementById('sbadge').textContent=list.length+'句';
+  document.getElementById('sent-list').innerHTML=list.map((s,i)=>{
+    const sc=SCENES.find(x=>x.key===s[3]);
+    const globalIdx=SENTS.indexOf(s);
+    return`<div class="sent-card" id="sc-${globalIdx}" onclick="playSent(${globalIdx})">
+      <div class="sent-thai">${s[0]}</div>
+      <div class="sent-ph">${s[1]}</div>
+      <div class="sent-cn">${s[2]}</div>
+      <div class="sent-footer">
+        <span class="sent-scene">${sc?sc.emoji+' '+sc.title:s[3]}</span>
+        <svg class="sent-play" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function playSent(idx){
+  const s=SENTS[idx];
+  if(!s)return;
+  speakThai(s[0],null);
+  // highlight
+  document.querySelectorAll('.sent-card').forEach(c=>c.style.borderLeft='');
+  const el=document.getElementById('sc-'+idx);
+  if(el)el.style.borderLeft='3px solid #1a6b4a';
+}
+
 function go(t){
   document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
@@ -945,11 +1104,12 @@ function go(t){
   document.getElementById('t-'+t).classList.add('on');
   if(t==='words')renderWordList();
   if(t==='quiz')refreshQuiz();
+  if(t==='sents')renderSents();
 }
 
 if(window.speechSynthesis){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
 document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
-buildFilter();renderSceneGrid();upCard();renderWordList();refreshQuiz();
+buildFilter();buildSentFilter();renderSceneGrid();upCard();renderWordList();renderSents();refreshQuiz();
 updateStats();
 </script>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.register("./sw.js")}</script>
